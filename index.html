@@ -24,14 +24,13 @@ body{
   padding:12px 20px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   backdrop-filter:blur(10px);
   background:rgba(10,10,15,0.6);
   z-index:100;
 }
 
 .header img{width:110px;}
-.header a{color:#fff;text-decoration:none;font-size:14px;}
+.header a{color:#fff;text-decoration:none;}
 
 /* HERO */
 .hero{
@@ -42,6 +41,7 @@ body{
   justify-content:center;
   text-align:center;
   position:relative;
+  overflow:hidden;
 }
 
 .hero-bg{
@@ -49,14 +49,14 @@ body{
   width:200%;
   height:200%;
   background:
-    radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
-    radial-gradient(circle at 80% 70%, #7B5CFF, transparent 40%);
+    radial-gradient(circle at 30% 30%, #7B5CFF, transparent 40%),
+    radial-gradient(circle at 70% 70%, #7B5CFF, transparent 40%);
   opacity:.2;
+  transform:translateY(0);
 }
 
 .hero-content{
   position:relative;
-  max-width:600px;
   animation:fadeUp 1s ease forwards;
 }
 
@@ -73,33 +73,16 @@ body{
   font-size:38px;
 }
 
-.hero p{color:#aaa;margin-top:10px;}
-
 .btn{
-  display:inline-block;
   margin-top:20px;
   padding:14px 30px;
   border-radius:30px;
   background:linear-gradient(45deg,#7B5CFF,#9F7BFF);
   color:#fff;
   text-decoration:none;
-  position:relative;
-  overflow:hidden;
 }
 
-.btn::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
-  transition:.6s;
-}
-.btn:hover::after{left:100%;}
-
-/* SECTIONS */
+/* SECTION */
 .section{padding:55px 20px;text-align:center;}
 
 /* SCROLL ANIMATION */
@@ -120,13 +103,33 @@ body{
   border:1px solid rgba(255,255,255,0.08);
 }
 
+/* TOGGLE */
+.toggle{
+  margin:20px auto;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.toggle button{
+  padding:8px 16px;
+  border-radius:20px;
+  border:none;
+  background:#111;
+  color:#aaa;
+}
+
+.toggle .active{
+  background:#7B5CFF;
+  color:#fff;
+}
+
 /* PRICING */
 .cards{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:18px;
-  margin-top:20px;
 }
 
 .card{
@@ -134,19 +137,14 @@ body{
   padding:25px;
   border-radius:18px;
   position:relative;
-  text-align:center;
 }
 
-/* ICON */
-.icon{
-  font-size:26px;
-  margin-bottom:10px;
-  color:#7B5CFF;
-}
+.price{font-size:34px;color:#9F7BFF;}
 
-/* FEATURED PURPLE GLOW */
+/* FEATURED BORDER ONLY */
 .featured{
   transform:scale(1.07);
+  border:1px solid transparent;
 }
 
 .featured::before{
@@ -156,14 +154,14 @@ body{
   border-radius:20px;
   background:linear-gradient(120deg,#7B5CFF,#9F7BFF,#7B5CFF);
   background-size:300% 300%;
-  animation:glow 5s linear infinite;
+  animation:glow 6s linear infinite;
   z-index:-1;
 }
 
 @keyframes glow{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+  0%{background-position:0%}
+  50%{background-position:100%}
+  100%{background-position:0%}
 }
 
 .badge{
@@ -177,10 +175,13 @@ body{
   font-size:12px;
 }
 
-.price{
-  font-size:34px;
-  margin:10px 0;
-  color:#9F7BFF;
+/* FEATURES */
+.features{
+  display:none;
+  margin-top:10px;
+  font-size:14px;
+  color:#ccc;
+  text-align:left;
 }
 
 /* PROJECT */
@@ -192,34 +193,18 @@ body{
 }
 
 .project video{width:100%;}
-.project-info{padding:20px;text-align:left;}
-.project-tag{font-size:12px;color:#9F7BFF;}
 
-/* TESTIMONIALS */
-.testimonials{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-top:20px;
-}
-
+/* TESTIMONIAL */
 .testimonial{
   width:260px;
   padding:18px;
   border-radius:14px;
-  text-align:left;
+  margin:10px auto;
   transition:.3s;
 }
 
 .testimonial:hover{
   box-shadow:0 0 20px rgba(123,92,255,0.3);
-}
-
-.testimonial strong{
-  display:block;
-  margin-top:10px;
-  font-size:13px;
 }
 
 /* CONTACT */
@@ -240,12 +225,12 @@ input,textarea{
   color:#fff;
 }
 
-button{
+button.submit{
   width:100%;
   padding:14px;
   border:none;
   border-radius:30px;
-  background:linear-gradient(45deg,#7B5CFF,#9F7BFF);
+  background:#7B5CFF;
   color:#fff;
 }
 </style>
@@ -253,79 +238,87 @@ button{
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <img src="logo.png">
   <a href="#contact">Contact</a>
 </div>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" id="parallax"></div>
   <div class="hero-content">
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
     <img src="logo.png" class="logo">
     <h1>Look Professional.<br>Get More Customers.</h1>
-    <p>Affordable websites that help your business stand out.</p>
     <a href="#contact" class="btn">Message Me</a>
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="section fade">
 <h2>Website Packages</h2>
 
+<div class="toggle">
+  <button class="active" onclick="toggleView('simple')">Overview</button>
+  <button onclick="toggleView('full')">Full Breakdown</button>
+</div>
+
 <div class="cards">
-  <div class="card glass">
-    <div class="icon">⚡</div>
-    <h3>Starter</h3>
-    <div class="price">$100</div>
-    <p>Simple site to get online fast.</p>
-  </div>
 
-  <div class="card glass featured">
-    <div class="badge">Most Popular</div>
-    <div class="icon">🚀</div>
-    <h3>Business Growth</h3>
-    <div class="price">$250</div>
-    <p>Best option to attract customers.</p>
-  </div>
+<div class="card glass">
+<h3>Starter</h3>
+<div class="price">$100</div>
+<p class="simple">Simple site to get online fast.</p>
+<div class="features">
+• 1 Page Website<br>
+• Mobile Friendly<br>
+• Basic SEO<br>
+• 1 Revision
+</div>
+</div>
 
-  <div class="card glass">
-    <div class="icon">💎</div>
-    <h3>Premium</h3>
-    <div class="price">$500</div>
-    <p>High-end conversion design.</p>
-  </div>
+<div class="card glass featured">
+<div class="badge">Most Popular</div>
+<h3>Business Growth</h3>
+<div class="price">$250</div>
+<p class="simple">Best option to attract customers.</p>
+<div class="features">
+• Up to 3 Pages<br>
+• Google Maps<br>
+• Local SEO<br>
+• 2 Revisions
+</div>
+</div>
+
+<div class="card glass">
+<h3>Premium</h3>
+<div class="price">$500</div>
+<p class="simple">High-end conversion design.</p>
+<div class="features">
+• Up to 5 Pages<br>
+• Advanced SEO<br>
+• Booking Integration<br>
+• Priority Support
+</div>
+</div>
+
 </div>
 </section>
 
-<!-- PROJECT -->
 <section class="section fade">
 <h2>Recent Project</h2>
 
 <div class="project glass">
-  <video autoplay muted loop playsinline>
-    <source src="demo.mp4">
-  </video>
-
-  <div class="project-info">
-    <span class="project-tag">Landscaping Business</span>
-    <h3>Modern Local Website</h3>
-    <p>Built to increase calls and make the business look professional.</p>
-  </div>
+<video autoplay muted loop playsinline>
+<source src="demo.mp4">
+</video>
 </div>
 
-<div class="testimonials">
-  <div class="testimonial glass">
-    “Since launching the site, we’ve gotten way more calls.”
-    <strong>– Mike, Landscaping Owner</strong>
-  </div>
+<div class="testimonial glass">
+“Since launching the site, we’ve gotten way more calls.”
+<strong>– Mike, Landscaping Owner</strong>
 </div>
 
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section fade">
 <h2>Let’s Build Your Website</h2>
 
@@ -334,32 +327,31 @@ button{
 <input type="text" placeholder="Your Name" required>
 <input type="email" placeholder="Your Email" required>
 <textarea placeholder="Tell me about your business"></textarea>
-<button type="submit">Start My Website</button>
+<button class="submit">Start My Website</button>
 </form>
 </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section fade">
-<h2>What Clients Say</h2>
-
-<div class="testimonials">
-  <div class="testimonial glass">“Super smooth process.”<strong>– James T.</strong></div>
-  <div class="testimonial glass">“Looks high-end.”<strong>– Sarah L.</strong></div>
-  <div class="testimonial glass">“My business looks legit now.”<strong>– David M.</strong></div>
-</div>
-
-</section>
-
 <script>
+/* SCROLL */
 const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
+entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show')}})
 });
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
+
+/* TOGGLE */
+function toggleView(type){
+document.querySelectorAll('.simple').forEach(el=>el.style.display= type==='simple'?'block':'none');
+document.querySelectorAll('.features').forEach(el=>el.style.display= type==='full'?'block':'none');
+
+document.querySelectorAll('.toggle button').forEach(btn=>btn.classList.remove('active'));
+event.target.classList.add('active');
+}
+
+/* PARALLAX */
+window.addEventListener('scroll',()=>{
+document.getElementById('parallax').style.transform=`translateY(${window.scrollY * 0.2}px)`
+});
 </script>
 
 </body>
