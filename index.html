@@ -16,7 +16,7 @@ body{
   overflow-x:hidden;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .hero{
   height:100vh;
   display:flex;
@@ -25,9 +25,21 @@ body{
   text-align:center;
   position:relative;
   overflow:hidden;
+
+  /* 🌊 NEW: animated gradient background */
+  background: linear-gradient(-45deg, #0B0B0F, #121225, #0B0B0F, #1a1a2e);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
 }
 
-/* GRID */
+/* moving gradient animation */
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* GRID overlay */
 .hero::before{
   content:"";
   position:absolute;
@@ -67,7 +79,7 @@ body{
   to{transform:translateY(80px);}
 }
 
-/* CONTENT */
+/* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
@@ -85,9 +97,9 @@ body{
   animation-delay:0.2s;
 }
 
-/* LOGO (BIGGER NOW) */
+/* LOGO (BIG + PREMIUM) */
 .logo{
-  width:220px;   /* 🔥 INCREASED SIZE */
+  width:260px;
   margin-bottom:25px;
   filter:brightness(1.15);
   opacity:0;
@@ -128,7 +140,7 @@ body{
   animation-delay:1s;
 }
 
-/* ANIMATIONS */
+/* animations */
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0);}
 }
@@ -136,12 +148,13 @@ body{
   to{opacity:1;transform:scale(1);}
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 .section{
   padding:100px 8%;
   text-align:center;
 }
 
+/* scroll fade */
 .fade{
   opacity:0;
   transform:translateY(40px);
@@ -149,7 +162,7 @@ body{
 }
 .fade.show{opacity:1;transform:translateY(0);}
 
-/* CARDS */
+/* ================= PRICING (RESTORED + STRONG) ================= */
 .cards{
   display:flex;
   gap:25px;
@@ -163,6 +176,25 @@ body{
   padding:30px;
   border-radius:20px;
   width:280px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(123,92,255,0.2);
+}
+
+/* 🔥 RESTORED ORIGINAL PRICE STYLE */
+.price{
+  font-size:30px;
+  color:#7B5CFF;
+  margin:15px 0;
+  font-weight:600;
+}
+
+.card p{
+  color:#aaa;
+  font-size:14px;
 }
 
 /* CONTACT */
@@ -189,6 +221,21 @@ button{
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   cursor:pointer;
+}
+
+/* mobile CTA */
+.mobile-cta{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#7B5CFF;
+  text-align:center;
+  padding:15px;
+}
+.mobile-cta a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
 }
 </style>
 </head>
@@ -222,6 +269,7 @@ button{
   <h2>Website Packages</h2>
 
   <div class="cards">
+
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
@@ -239,23 +287,25 @@ button{
       <div class="price">$500</div>
       <p>Advanced design and features to scale your business.</p>
     </div>
+
   </div>
 </section>
 
-<!-- CONTACT (NOW WORKING) -->
+<!-- CONTACT -->
 <section class="section fade">
   <h2>Contact Me</h2>
 
-  <!-- 🔥 REPLACE THIS FORM ACTION WITH YOUR FORMSPREE LINK -->
   <form action="https://formspree.io/f/yourFormID" method="POST">
-
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-
     <button type="submit">Send Message</button>
   </form>
 </section>
+
+<div class="mobile-cta">
+  <a href="sms:2397884380">Message Me Now</a>
+</div>
 
 <script>
 const fades=document.querySelectorAll('.fade');
