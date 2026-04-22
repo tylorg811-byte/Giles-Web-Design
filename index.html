@@ -28,7 +28,6 @@ body{
   overflow:hidden;
 }
 
-/* GRID */
 .hero::before{
   content:"";
   position:absolute;
@@ -80,7 +79,6 @@ body{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* TAGLINE */
 .tagline{
   font-size:12px;
   letter-spacing:3px;
@@ -88,18 +86,15 @@ body{
   margin-bottom:18px;
 }
 
-/* LOGO */
 .logo{
-  width:160px;
+  width:180px;
   margin-bottom:25px;
 }
 
-/* HEADER FONT (UPGRADED) */
 .hero h1{
   font-family:'Playfair Display', serif;
-  font-size:48px;
-  line-height:1.2;
-  letter-spacing:-0.5px;
+  font-size:52px;
+  line-height:1.15;
 }
 
 .hero p{
@@ -108,7 +103,6 @@ body{
   font-size:16px;
 }
 
-/* BUTTON */
 .btn{
   display:inline-block;
   margin-top:28px;
@@ -121,9 +115,9 @@ body{
   box-shadow:0 0 25px rgba(123,92,255,0.4);
 }
 
-/* SECTIONS */
+/* SECTION */
 .section{
-  padding:100px 8%;
+  padding:110px 8%;
   text-align:center;
 }
 
@@ -166,22 +160,46 @@ body{
   margin:15px 0;
 }
 
-/* VIDEO */
-video{
-  width:100%;
-  max-width:900px;
-  border-radius:16px;
-  margin-top:40px;
-  box-shadow:0 0 40px rgba(0,0,0,0.6);
+/* PORTFOLIO */
+.portfolio{
+  max-width:1000px;
+  margin:50px auto 0;
+  text-align:left;
 }
 
-/* CASE STUDY */
-.case{
-  max-width:650px;
-  margin:30px auto 0;
+.project{
+  background:rgba(255,255,255,0.03);
+  padding:25px;
+  border-radius:20px;
+}
+
+.project h3{
+  margin-bottom:10px;
+}
+
+.project p{
   color:#aaa;
-  line-height:1.6;
-  font-size:15px;
+  margin-bottom:20px;
+}
+
+video{
+  width:100%;
+  border-radius:14px;
+  box-shadow:0 0 30px rgba(0,0,0,0.5);
+}
+
+/* TESTIMONIAL */
+.testimonial{
+  max-width:600px;
+  margin:40px auto 0;
+  font-style:italic;
+  color:#ccc;
+}
+
+/* CTA */
+.cta{
+  margin-top:40px;
+  font-size:18px;
 }
 
 /* CONTACT */
@@ -227,9 +245,9 @@ button{
 
     <img src="logo.png" class="logo">
 
-    <h1>Websites That Make Your Business Look Like a Big Deal</h1>
+    <h1>Look Professional.<br>Get More Customers.</h1>
 
-    <p>Clean, professional websites designed to help you stand out and get more customers.</p>
+    <p>Affordable websites designed to make your business stand out and bring in more clients.</p>
 
     <a href="sms:2397884380" class="btn">Message Me</a>
 
@@ -246,43 +264,51 @@ button{
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
-      <p>Simple website to get your business online fast.</p>
+      <p>Get your business online with a clean, simple website.</p>
     </div>
 
     <div class="card" style="border:1px solid #7B5CFF;">
       <h3>Business Growth</h3>
       <div class="price">$250</div>
-      <p>Designed to attract local customers and build trust.</p>
+      <p>Designed to attract customers and build trust fast.</p>
     </div>
 
     <div class="card">
       <h3>Premium</h3>
       <div class="price">$500</div>
-      <p>High-end design focused on converting visitors into clients.</p>
+      <p>High-end design focused on turning visitors into real leads.</p>
     </div>
 
   </div>
 </section>
 
-<!-- VIDEO -->
+<!-- PORTFOLIO -->
 <section class="section fade">
-  <h2>Recent Work</h2>
+  <h2>Featured Project</h2>
 
-  <video autoplay muted loop playsinline>
-    <source src="demo.mp4" type="video/mp4">
-    <source src="demo.MOV" type="video/quicktime">
-  </video>
+  <div class="portfolio">
+    <div class="project">
+      <h3>Landscaping Business Website</h3>
+      <p>
+        Built a modern, mobile-friendly website for a landscaping company to help them look more professional 
+        and stand out from competitors. The layout highlights their work clearly and makes it easy for potential 
+        customers to contact them quickly.
+      </p>
 
-</section>
+      <video autoplay muted loop playsinline>
+        <source src="demo.mp4" type="video/mp4">
+        <source src="demo.MOV" type="video/quicktime">
+      </video>
+    </div>
+  </div>
 
-<!-- CASE STUDY -->
-<section class="section fade">
-  <h2>Landscaping Website Project</h2>
+  <div class="testimonial">
+    “The website made my business look 10x more professional. I started getting more calls within the first week.”
+  </div>
 
-  <div class="case">
-    Designed a clean, modern website for a landscaping business to make them look more professional and trustworthy online. 
-    Focused on showing their work clearly, making it easy for customers to contact them, and ensuring the site looks great on mobile. 
-    The goal was simple: turn visitors into real leads by making the business stand out from competitors.
+  <div class="cta">
+    Want something like this for your business?<br>
+    <a href="sms:2397884380" class="btn">Message Me</a>
   </div>
 
 </section>
