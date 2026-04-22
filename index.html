@@ -16,6 +16,45 @@ body{
   overflow-x:hidden;
 }
 
+/* ================= GLASS NAVBAR ================= */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  padding:18px 8%;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  transition:0.3s ease;
+}
+
+nav.scrolled{
+  background:rgba(20,20,30,0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+nav .brand{
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+nav a{
+  color:#aaa;
+  text-decoration:none;
+  margin-left:20px;
+  font-size:14px;
+  transition:0.2s;
+}
+
+nav a:hover{
+  color:#fff;
+}
+
 /* ================= HERO ================= */
 .hero{
   height:100vh;
@@ -26,20 +65,18 @@ body{
   position:relative;
   overflow:hidden;
 
-  /* 🌊 NEW: animated gradient background */
   background: linear-gradient(-45deg, #0B0B0F, #121225, #0B0B0F, #1a1a2e);
   background-size: 400% 400%;
   animation: gradientMove 12s ease infinite;
 }
 
-/* moving gradient animation */
 @keyframes gradientMove{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
 
-/* GRID overlay */
+/* GRID */
 .hero::before{
   content:"";
   position:absolute;
@@ -56,8 +93,8 @@ body{
   border-radius:50%;
   filter:blur(100px);
   opacity:0;
-  animation:float 14s ease-in-out infinite alternate;
   transition:opacity 1s ease;
+  will-change: transform;
 }
 
 .hero.loaded .orb{opacity:0.4;}
@@ -74,19 +111,25 @@ body{
   bottom:-120px;right:-120px;
 }
 
-@keyframes float{
-  from{transform:translateY(0);}
-  to{transform:translateY(80px);}
-}
-
 /* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
   max-width:800px;
+  transform:translateY(0);
 }
 
-/* TAGLINE */
+/* LOGO */
+.logo{
+  width:260px;
+  margin-bottom:25px;
+  filter:brightness(1.15);
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.3s;
+}
+
+/* TEXT */
 .tagline{
   font-size:14px;
   letter-spacing:2px;
@@ -97,24 +140,12 @@ body{
   animation-delay:0.2s;
 }
 
-/* LOGO (BIG + PREMIUM) */
-.logo{
-  width:260px;
-  margin-bottom:25px;
-  filter:brightness(1.15);
-  opacity:0;
-  transform:scale(0.9);
-  animation:logoIn 1s ease forwards;
-  animation-delay:0.4s;
-}
-
-/* TITLE */
 .hero h1{
   font-size:44px;
   line-height:1.2;
   opacity:0;
   animation:fadeUp 1s ease forwards;
-  animation-delay:0.6s;
+  animation-delay:0.5s;
 }
 
 .hero p{
@@ -122,10 +153,9 @@ body{
   color:#aaa;
   opacity:0;
   animation:fadeUp 1s ease forwards;
-  animation-delay:0.8s;
+  animation-delay:0.7s;
 }
 
-/* BUTTON */
 .btn{
   display:inline-block;
   margin-top:25px;
@@ -137,15 +167,12 @@ body{
   box-shadow:0 0 20px rgba(123,92,255,0.5);
   opacity:0;
   animation:fadeUp 1s ease forwards;
-  animation-delay:1s;
+  animation-delay:0.9s;
 }
 
-/* animations */
+/* ANIMATION */
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0);}
-}
-@keyframes logoIn{
-  to{opacity:1;transform:scale(1);}
 }
 
 /* ================= SECTIONS ================= */
@@ -154,15 +181,7 @@ body{
   text-align:center;
 }
 
-/* scroll fade */
-.fade{
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
-.fade.show{opacity:1;transform:translateY(0);}
-
-/* ================= PRICING (RESTORED + STRONG) ================= */
+/* ================= PRICING ================= */
 .cards{
   display:flex;
   gap:25px;
@@ -184,17 +203,11 @@ body{
   box-shadow:0 0 40px rgba(123,92,255,0.2);
 }
 
-/* 🔥 RESTORED ORIGINAL PRICE STYLE */
 .price{
   font-size:30px;
   color:#7B5CFF;
   margin:15px 0;
   font-weight:600;
-}
-
-.card p{
-  color:#aaa;
-  font-size:14px;
 }
 
 /* CONTACT */
@@ -223,7 +236,7 @@ button{
   cursor:pointer;
 }
 
-/* mobile CTA */
+/* MOBILE CTA */
 .mobile-cta{
   position:fixed;
   bottom:0;
@@ -242,13 +255,22 @@ button{
 
 <body>
 
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="brand">Giles Web Design</div>
+  <div>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
 
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
 
-  <div class="hero-content">
+  <div class="hero-content" id="heroContent">
 
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
 
@@ -265,11 +287,10 @@ button{
 </section>
 
 <!-- PRICING -->
-<section class="section fade">
+<section class="section" id="pricing">
   <h2>Website Packages</h2>
 
   <div class="cards">
-
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
@@ -287,12 +308,11 @@ button{
       <div class="price">$500</div>
       <p>Advanced design and features to scale your business.</p>
     </div>
-
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section fade">
+<section class="section" id="contact">
   <h2>Contact Me</h2>
 
   <form action="https://formspree.io/f/yourFormID" method="POST">
@@ -308,19 +328,34 @@ button{
 </div>
 
 <script>
-const fades=document.querySelectorAll('.fade');
+/* NAVBAR BLUR ON SCROLL */
+const nav = document.getElementById("nav");
 
-window.addEventListener('scroll',()=>{
-  fades.forEach(el=>{
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
-      el.classList.add('show');
-    }
-  });
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
 });
 
-window.addEventListener('load',()=>{
-  document.querySelector('.hero').classList.add('loaded');
+/* HERO PARALLAX */
+const hero = document.querySelector(".hero");
+const orb1 = document.querySelector(".orb1");
+const orb2 = document.querySelector(".orb2");
+const heroContent = document.getElementById("heroContent");
+
+window.addEventListener("scroll", () => {
+  let y = window.scrollY;
+
+  orb1.style.transform = `translateY(${y * 0.2}px)`;
+  orb2.style.transform = `translateY(${y * -0.15}px)`;
+  heroContent.style.transform = `translateY(${y * 0.1}px)`;
+});
+
+/* HERO LOAD */
+window.addEventListener("load", () => {
+  hero.classList.add("loaded");
 });
 </script>
 
