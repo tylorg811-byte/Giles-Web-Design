@@ -15,45 +15,39 @@ body{
   color:#fff;
   font-family:'Inter',sans-serif;
   overflow-x:hidden;
-  opacity:0;
-  animation:pageFade 1s ease forwards;
 }
 
-@keyframes pageFade{
-  to{opacity:1;}
-}
-
-/* GRAIN OVERLAY */
-body::after{
-  content:"";
+/* HEADER */
+.header{
   position:fixed;
-  inset:0;
-  background:url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity:0.05;
-  pointer-events:none;
+  top:0;
+  width:100%;
+  padding:12px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(10px);
+  background:rgba(10,10,15,0.6);
+  z-index:100;
 }
 
-/* CURSOR GLOW */
-.cursor-glow{
-  position:fixed;
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  pointer-events:none;
-  background:radial-gradient(circle, rgba(123,92,255,0.2), transparent 60%);
-  transform:translate(-50%,-50%);
-  z-index:0;
+.header img{width:110px;}
+
+.header a{
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
 }
 
 /* HERO */
 .hero{
-  min-height:90vh;
+  padding-top:90px;
+  min-height:80vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   position:relative;
-  overflow:hidden;
 }
 
 .hero-bg{
@@ -63,71 +57,47 @@ body::after{
   background:
     radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
     radial-gradient(circle at 80% 70%, #00C2FF, transparent 40%);
-  opacity:.25;
+  opacity:.2;
 }
 
 .hero-content{
   position:relative;
-  z-index:2;
-  max-width:650px;
-  opacity:0;
-  transform:translateY(40px);
-  animation:heroFade 1s ease forwards;
+  max-width:600px;
+  animation:fadeUp 1s ease forwards;
 }
 
-@keyframes heroFade{
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px);}
   to{opacity:1;transform:translateY(0);}
 }
 
-.tagline{font-size:11px;letter-spacing:3px;color:#aaa;margin-bottom:6px;}
-.logo{width:160px;margin:10px auto 15px;display:block;}
+.logo{width:160px;margin:10px auto;}
+
+.tagline{
+  font-size:11px;
+  letter-spacing:3px;
+  color:#aaa;
+}
 
 .hero h1{
-  font-family:'Playfair Display', serif;
-  font-size:40px;
+  font-family:'Playfair Display';
+  font-size:38px;
 }
 
-.hero p{margin-top:10px;color:#aaa;}
+.hero p{color:#aaa;margin-top:10px;}
 
-/* BUTTON */
 .btn{
-  position:relative;
   display:inline-block;
-  margin-top:25px;
+  margin-top:20px;
   padding:14px 30px;
-  border-radius:40px;
+  border-radius:30px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
-  color:#fff;
   text-decoration:none;
-  overflow:hidden;
+  color:#fff;
 }
 
-.btn::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-100%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
-  transition:.6s;
-}
-
-.btn:hover::after{left:100%;}
-
-/* SECTION */
-.section{padding:60px 20px;text-align:center;}
-
-/* FADE */
-.fade{
-  opacity:0;
-  transform:translateY(50px);
-  transition:.6s ease;
-}
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
+/* SECTIONS */
+.section{padding:50px 20px;text-align:center;}
 
 /* GLASS */
 .glass{
@@ -137,17 +107,21 @@ body::after{
 }
 
 /* PRICING */
-.cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
-
-.card{
-  padding:26px;
-  border-radius:18px;
-  width:260px;
-  transition:.2s;
-  transform-style:preserve-3d;
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:16px;
+  margin-top:20px;
 }
 
-/* FEATURED BORDER */
+.card{
+  width:260px;
+  padding:25px;
+  border-radius:18px;
+}
+
+/* FEATURED FIXED */
 .featured{
   position:relative;
   transform:scale(1.08);
@@ -159,12 +133,12 @@ body::after{
   inset:-2px;
   border-radius:20px;
   background:linear-gradient(120deg,#7B5CFF,#00C2FF,#7B5CFF);
-  background-size:300% 300%;
-  animation:borderMove 6s linear infinite;
+  background-size:300%;
+  animation:glow 6s linear infinite;
   z-index:-1;
 }
 
-@keyframes borderMove{
+@keyframes glow{
   0%{background-position:0%;}
   50%{background-position:100%;}
   100%{background-position:0%;}
@@ -181,30 +155,71 @@ body::after{
   font-size:12px;
 }
 
-.price{font-size:34px;margin:10px 0;color:#7B5CFF;}
+.price{
+  font-size:34px;
+  margin:10px 0;
+  color:#7B5CFF;
+}
 
 /* PROJECT */
-.project{max-width:900px;margin:30px auto;border-radius:20px;overflow:hidden;}
+.project{
+  max-width:900px;
+  margin:30px auto;
+  border-radius:18px;
+  overflow:hidden;
+}
+
 .project video{width:100%;}
-.project-info{padding:20px;text-align:left;}
-.project-tag{font-size:12px;color:#7B5CFF;margin-bottom:10px;display:block;}
+
+.project-info{
+  padding:20px;
+  text-align:left;
+}
+
+.project-tag{
+  font-size:12px;
+  color:#7B5CFF;
+}
 
 /* TESTIMONIALS */
-.testimonials{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;margin-top:25px;}
-.testimonial{max-width:260px;padding:18px;border-radius:14px;text-align:left;color:#ddd;}
-.testimonial strong{display:block;margin-top:10px;font-size:13px;}
+.testimonials{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:20px;
+}
+
+.testimonial{
+  flex:1;
+  min-width:250px;
+  max-width:280px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:18px;
+  border-radius:14px;
+  min-height:150px;
+}
 
 /* CONTACT */
-.contact-box{max-width:500px;margin:auto;padding:30px;border-radius:20px;}
+.contact-box{
+  max-width:500px;
+  margin:auto;
+  padding:25px;
+  border-radius:18px;
+}
+
 input,textarea{
   width:100%;
   padding:14px;
   margin-bottom:12px;
   border:none;
   border-radius:10px;
-  background:#111118;
+  background:#111;
   color:#fff;
 }
+
 button{
   width:100%;
   padding:14px;
@@ -213,161 +228,106 @@ button{
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
 }
-
-.success{display:none;margin-top:10px;color:#7BFFB2;}
 </style>
 </head>
 
 <body>
 
-<div class="cursor-glow" id="glow"></div>
+<!-- HEADER -->
+<div class="header">
+  <img src="logo.png">
+  <a href="#contact">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-
-  <div class="hero-content" id="heroContent">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
     <img src="logo.png" class="logo">
     <h1>Look Professional.<br>Get More Customers.</h1>
     <p>Affordable websites that help your business stand out.</p>
-    <a href="#" class="btn">Message Me</a>
+    <a href="#contact" class="btn">Message Me</a>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="section fade">
-  <h2>Website Packages</h2>
-  <div class="cards">
-    <div class="card glass tilt">
-      <h3>Starter</h3>
-      <div class="price">$100</div>
-      <p>Simple site to get online fast.</p>
-    </div>
+<section class="section">
+<h2>Website Packages</h2>
 
-    <div class="card glass featured tilt">
-      <div class="badge">Most Popular</div>
-      <h3>Business Growth</h3>
-      <div class="price">$250</div>
-      <p>Best option to attract customers.</p>
-    </div>
-
-    <div class="card glass tilt">
-      <h3>Premium</h3>
-      <div class="price">$500</div>
-      <p>High-end conversion design.</p>
-    </div>
+<div class="cards">
+  <div class="card glass">
+    <h3>Starter</h3>
+    <div class="price">$100</div>
+    <p>Simple site to get online fast.</p>
   </div>
-</section>
 
-<!-- ABOUT -->
-<section class="section fade">
-  <h2>About Me</h2>
-  <div class="glass" style="max-width:700px;margin:auto;padding:25px;text-align:left;">
-    Designing websites since 2015. Focused on clean, modern designs that actually convert.
+  <div class="card glass featured">
+    <div class="badge">Most Popular</div>
+    <h3>Business Growth</h3>
+    <div class="price">$250</div>
+    <p>Best option to attract customers.</p>
   </div>
+
+  <div class="card glass">
+    <h3>Premium</h3>
+    <div class="price">$500</div>
+    <p>High-end conversion design.</p>
+  </div>
+</div>
 </section>
 
 <!-- PROJECT -->
-<section class="section fade">
-  <h2>Recent Project</h2>
+<section class="section">
+<h2>Recent Project</h2>
 
-  <div class="project glass">
-    <video autoplay muted loop playsinline>
-      <source src="demo.mp4" type="video/mp4">
-    </video>
+<div class="project glass">
+  <video autoplay muted loop playsinline>
+    <source src="demo.mp4">
+  </video>
 
-    <div class="project-info">
-      <span class="project-tag">Landscaping Business</span>
-      <h3>Modern Local Service Website</h3>
-      <p>Built to increase calls and make the business look professional.</p>
-    </div>
+  <div class="project-info">
+    <span class="project-tag">Landscaping Business</span>
+    <h3>Modern Local Website</h3>
+    <p>Built to increase calls and make the business look professional.</p>
   </div>
+</div>
+
+<!-- LANDSCAPE TESTIMONIAL -->
+<div class="testimonials">
+  <div class="testimonial glass">
+    “Since launching the site, we’ve gotten way more calls.”
+    <strong>– Mike, Landscaping Owner</strong>
+  </div>
+</div>
+
 </section>
 
 <!-- CONTACT -->
-<section class="section fade">
-  <h2>Let’s Build Your Website</h2>
+<section id="contact" class="section">
+<h2>Let’s Build Your Website</h2>
 
-  <div class="contact-box glass">
-    <form id="form" action="YOUR_FORMSPREE_URL" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Tell me about your business..." required></textarea>
-      <button type="submit">Start My Website</button>
-    </form>
-    <div class="success" id="success">Message sent!</div>
-  </div>
+<div class="contact-box glass">
+<form action="YOUR_FORMSPREE_URL" method="POST">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Tell me about your business"></textarea>
+<button type="submit">Start My Website</button>
+</form>
+</div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="section fade">
-  <h2>What Clients Say</h2>
-  <div class="testimonials">
-    <div class="testimonial glass">“Super smooth process.”<strong>– James T.</strong></div>
-    <div class="testimonial glass">“Looks high-end.”<strong>– Sarah L.</strong></div>
-    <div class="testimonial glass">“My business looks legit now.”<strong>– David M.</strong></div>
-  </div>
+<section class="section">
+<h2>What Clients Say</h2>
+
+<div class="testimonials">
+  <div class="testimonial glass">“Super smooth process.”<strong>– James T.</strong></div>
+  <div class="testimonial glass">“Looks high-end.”<strong>– Sarah L.</strong></div>
+  <div class="testimonial glass">“My business looks legit now.”<strong>– David M.</strong></div>
+</div>
+
 </section>
-
-<script>
-/* FADE */
-const observer=new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')});
-});
-document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
-
-/* PARALLAX */
-window.addEventListener('scroll',()=>{
-  let y=scrollY;
-  heroBg.style.transform=`translateY(${y*0.2}px)`;
-  heroContent.style.transform=`translateY(${y*0.1}px)`;
-});
-
-/* CURSOR */
-document.addEventListener('mousemove',e=>{
-  glow.style.left=e.clientX+'px';
-  glow.style.top=e.clientY+'px';
-});
-
-/* TILT */
-document.querySelectorAll('.tilt').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    let r=card.getBoundingClientRect();
-    let x=e.clientX-r.left;
-    let y=e.clientY-r.top;
-
-    let rx=-(y/r.height-.5)*8;
-    let ry=(x/r.width-.5)*8;
-
-    card.style.transform=`translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-  });
-
-  card.addEventListener('mouseleave',()=>{
-    card.style.transform='translateY(0)';
-  });
-});
-
-/* FORM */
-const form=document.getElementById('form');
-const success=document.getElementById('success');
-
-form.addEventListener('submit',async e=>{
-  e.preventDefault();
-  const data=new FormData(form);
-
-  const res=await fetch(form.action,{
-    method:"POST",
-    body:data,
-    headers:{'Accept':'application/json'}
-  });
-
-  if(res.ok){
-    form.reset();
-    success.style.display="block";
-  }
-});
-</script>
 
 </body>
 </html>
