@@ -102,25 +102,25 @@ nav.scrolled{
   gap:14px;
 }
 
-/* ANIMATION FIX (clean + reliable) */
-.fade-in{
+/* HERO ANIMATION (LOAD ONLY) */
+.hero-anim{
   opacity:0;
   transform:translateY(15px);
   animation:fadeUp 1s ease forwards;
 }
 
-.delay1{animation-delay:0.2s;}
-.delay2{animation-delay:0.4s;}
-.delay3{animation-delay:0.6s;}
-.delay4{animation-delay:0.8s;}
-.delay5{animation-delay:1s;}
+.h1{animation-delay:0.5s;}
+.p{animation-delay:0.7s;}
+.logo{animation-delay:0.35s;}
+.tag{animation-delay:0.2s;}
+.btns{animation-delay:0.9s;}
 
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0);}
 }
 
 /* TEXT */
-.tagline{
+.tag{
   font-size:13px;
   letter-spacing:2px;
   color:#aaa;
@@ -130,22 +130,21 @@ nav.scrolled{
   width:240px;
 }
 
-.hero h1{
+h1{
   font-size:44px;
   line-height:1.15;
   max-width:750px;
 }
 
-.hero p{
+p{
   color:#aaa;
   max-width:600px;
 }
 
-/* BUTTONS FIXED SIDE BY SIDE */
+/* HERO BUTTONS FIXED */
 .hero-buttons{
   display:flex;
   gap:12px;
-  margin-top:10px;
 }
 
 .btn{
@@ -158,12 +157,24 @@ nav.scrolled{
   font-weight:500;
 }
 
-/* ================= PRICING ================= */
+/* ================= SCROLL ANIMATION SYSTEM ================= */
 .section{
   padding:100px 8%;
   text-align:center;
 }
 
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================= PRICING ================= */
 .cards{
   display:flex;
   gap:25px;
@@ -177,15 +188,8 @@ nav.scrolled{
   padding:30px;
   border-radius:20px;
   width:280px;
-  position:relative;
-  transition:0.3s;
 }
 
-.card:hover{
-  transform:translateY(-8px);
-}
-
-/* PRICE */
 .price{
   font-size:30px;
   color:#7B5CFF;
@@ -193,19 +197,18 @@ nav.scrolled{
   font-weight:600;
 }
 
-/* 🔥 MOST POPULAR BADGE */
+/* BADGE */
 .badge{
   position:absolute;
-  top:-12px;
+  top:-10px;
   right:12px;
   background:#7B5CFF;
-  color:#fff;
-  font-size:11px;
   padding:6px 10px;
+  font-size:11px;
   border-radius:999px;
 }
 
-/* ================= CONTACT (PREMIUM REDESIGN) ================= */
+/* CONTACT */
 form{
   max-width:520px;
   margin:40px auto 0;
@@ -220,23 +223,6 @@ input, textarea{
   border-radius:12px;
   background:#151520;
   color:#fff;
-  font-size:14px;
-  outline:none;
-  border:1px solid rgba(255,255,255,0.05);
-}
-
-input:focus, textarea:focus{
-  border-color:#7B5CFF;
-}
-
-button{
-  padding:14px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
 }
 
 /* FOOTER */
@@ -248,12 +234,6 @@ button{
   text-align:center;
   padding:15px;
   z-index:999;
-}
-
-.mobile-cta a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
 }
 </style>
 </head>
@@ -272,15 +252,15 @@ button{
 
   <div class="hero-content">
 
-    <div class="tagline fade-in delay1">AFFORDABLE — YOUR WAY</div>
+    <div class="tag hero-anim tag">AFFORDABLE — YOUR WAY</div>
 
-    <img src="logo.png" class="logo fade-in delay2">
+    <img src="logo.png" class="logo hero-anim">
 
-    <h1 class="fade-in delay3">Websites That Make Your Business Look Like a Big Deal</h1>
+    <h1 class="hero-anim h1">Websites That Make Your Business Look Like a Big Deal</h1>
 
-    <p class="fade-in delay4">Designed to attract customers, build trust, and grow your business.</p>
+    <p class="hero-anim p">Designed to attract customers, build trust, and grow your business.</p>
 
-    <div class="hero-buttons fade-in delay5">
+    <div class="hero-buttons hero-anim btns">
       <a class="btn" href="sms:2397884380">Message Me</a>
     </div>
 
@@ -289,25 +269,25 @@ button{
 </section>
 
 <!-- PRICING -->
-<section class="section">
+<section class="section fade">
   <h2>Website Packages</h2>
 
   <div class="cards">
 
-    <div class="card">
+    <div class="card fade">
       <h3>Starter</h3>
       <div class="price">$100</div>
       <p>Simple, clean website to get your business online fast.</p>
     </div>
 
-    <div class="card" style="border:1px solid #7B5CFF;">
+    <div class="card fade" style="border:1px solid #7B5CFF; position:relative;">
       <div class="badge">Most Popular</div>
       <h3>Business Growth</h3>
       <div class="price">$250</div>
       <p>Designed to attract local customers and grow your presence.</p>
     </div>
 
-    <div class="card">
+    <div class="card fade">
       <h3>Premium</h3>
       <div class="price">$500</div>
       <p>Advanced design and features to scale your business.</p>
@@ -317,20 +297,16 @@ button{
 </section>
 
 <!-- CONTACT -->
-<section class="section">
+<section class="section fade">
   <h2>Contact Me</h2>
 
-  <form action="https://formspree.io/f/yourFormID" method="POST">
-
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-
-    <input type="text" name="business_type" placeholder="Business Type">
-    <input type="text" name="budget" placeholder="Budget Range">
-
-    <textarea name="message" rows="5" placeholder="Your Message"></textarea>
-
-    <button type="submit">Send Message</button>
+  <form class="fade" action="https://formspree.io/f/yourFormID" method="POST">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <input type="text" placeholder="Business Type">
+    <input type="text" placeholder="Budget Range">
+    <textarea rows="5" placeholder="Your Message"></textarea>
+    <button class="btn" type="submit">Send Message</button>
   </form>
 </section>
 
@@ -339,11 +315,27 @@ button{
 </div>
 
 <script>
+/* NAV */
 const nav=document.getElementById("nav");
 
 window.addEventListener("scroll",()=>{
   nav.classList.toggle("scrolled", window.scrollY>10);
 });
+
+/* SCROLL FADE (FIXED + RELIABLE) */
+const fadeEls=document.querySelectorAll(".fade");
+
+function runFade(){
+  fadeEls.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      el.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll",runFade);
+window.addEventListener("load",runFade);
 </script>
 
 </body>
