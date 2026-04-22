@@ -124,11 +124,11 @@ body{
   text-align:center;
 }
 
-/* SCROLL ANIMATION (LOWER ONLY) */
+/* SCROLL ANIMATION (FIXED) */
 .fade{
   opacity:0;
   transform:translateY(40px);
-  transition:0.8s;
+  transition:0.8s ease;
 }
 
 .fade.show{
@@ -215,7 +215,6 @@ button{
   <div class="orb orb2"></div>
 
   <div class="hero-content">
-
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
 
     <img src="logo.png" class="logo">
@@ -225,17 +224,18 @@ button{
     <p>Designed to attract customers, build trust, and grow your business.</p>
 
     <a href="sms:2397884380" class="btn">Message Me</a>
-
   </div>
 
 </section>
 
-<!-- PORTFOLIO VIDEO -->
+<!-- PORTFOLIO -->
 <section class="section fade">
   <h2>Recent Work</h2>
 
   <video controls>
     <source src="demo.mp4" type="video/mp4">
+    <source src="demo.MOV" type="video/quicktime">
+    Your browser does not support the video tag.
   </video>
 
 </section>
@@ -281,4 +281,16 @@ button{
 </section>
 
 <script>
-const
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
