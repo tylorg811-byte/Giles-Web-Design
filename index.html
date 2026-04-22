@@ -5,64 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giles Web Design</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 
 body{
   background:#0B0B0F;
   color:#fff;
   overflow-x:hidden;
-  font-family:'Inter',sans-serif;
 }
 
-/* ================= NAV ================= */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  z-index:1000;
-  padding:16px 8%;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  background:rgba(20,20,30,0.35);
-  backdrop-filter: blur(12px);
-  border-bottom:1px solid rgba(255,255,255,0.06);
-}
-
-nav.scrolled{
-  background:rgba(20,20,30,0.65);
-}
-
-.brand{
-  font-family:'Cormorant Garamond', serif;
-  font-size:24px;
-}
-
-/* NAV LINKS RESTORED */
-.nav-links{
-  display:flex;
-  gap:10px;
-}
-
-.nav-links a{
-  color:#cfcfcf;
-  text-decoration:none;
-  font-size:13px;
-  padding:8px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,0.04);
-}
-
-.nav-links a:hover{
-  background:rgba(123,92,255,0.25);
-}
-
-/* ================= HERO ================= */
+/* HERO */
 .hero{
   height:100vh;
   display:flex;
@@ -71,16 +25,6 @@ nav.scrolled{
   text-align:center;
   position:relative;
   overflow:hidden;
-
-  background: linear-gradient(-45deg,#0B0B0F,#121225,#0B0B0F,#1a1a2e);
-  background-size:400% 400%;
-  animation:gradientMove 12s ease infinite;
-}
-
-@keyframes gradientMove{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
 }
 
 /* GRID */
@@ -99,63 +43,92 @@ nav.scrolled{
   position:absolute;
   border-radius:50%;
   filter:blur(100px);
-  opacity:0;
-  transition:opacity 1s ease;
+  opacity:0.4;
+  animation:float 12s infinite alternate;
 }
 
-.hero.loaded .orb{opacity:0.4;}
+.orb1{
+  width:400px;height:400px;
+  background:#7B5CFF;
+  top:-120px;left:-120px;
+}
 
-.orb1{width:420px;height:420px;background:#7B5CFF;top:-120px;left:-120px;}
-.orb2{width:320px;height:320px;background:#00C2FF;bottom:-120px;right:-120px;}
+.orb2{
+  width:300px;height:300px;
+  background:#00C2FF;
+  bottom:-120px;right:-120px;
+}
 
-/* HERO */
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(80px);}
+}
+
+/* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
   max-width:800px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:14px;
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeInUp 1s ease forwards;
 }
 
-.logo{width:240px;}
+@keyframes fadeInUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
 
-.tag{
+/* TAGLINE */
+.tagline{
   font-size:13px;
   letter-spacing:2px;
   color:#aaa;
+  margin-bottom:15px;
 }
 
-h1{
+/* LOGO */
+.logo{
+  width:130px;
+  margin-bottom:20px;
+}
+
+/* TITLE */
+.hero h1{
   font-size:44px;
-  line-height:1.15;
+  line-height:1.2;
 }
 
-p{color:#aaa;}
+.hero p{
+  margin-top:15px;
+  color:#aaa;
+}
 
-/* BUTTON STYLE (GLOBAL FIX) */
+/* BUTTON */
 .btn{
   display:inline-block;
-  padding:14px 28px;
+  margin-top:25px;
+  padding:14px 32px;
   border-radius:40px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
-  font-weight:500;
+  box-shadow:0 0 20px rgba(123,92,255,0.5);
 }
 
-/* ================= SECTIONS ================= */
+/* SECTION */
 .section{
   padding:100px 8%;
   text-align:center;
 }
 
-/* SCROLL FADE */
+/* SCROLL ANIMATION (LOWER ONLY) */
 .fade{
   opacity:0;
   transform:translateY(40px);
-  transition:0.8s ease;
+  transition:0.8s;
 }
 
 .fade.show{
@@ -163,7 +136,15 @@ p{color:#aaa;}
   transform:translateY(0);
 }
 
-/* ================= PRICING ================= */
+/* VIDEO */
+video{
+  width:100%;
+  max-width:800px;
+  border-radius:15px;
+  margin-top:40px;
+}
+
+/* CARDS */
 .cards{
   display:flex;
   gap:25px;
@@ -177,78 +158,55 @@ p{color:#aaa;}
   padding:30px;
   border-radius:20px;
   width:280px;
-  position:relative;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(123,92,255,0.2);
 }
 
 .price{
   font-size:30px;
   color:#7B5CFF;
   margin:15px 0;
-  font-weight:600;
 }
 
-.badge{
-  position:absolute;
-  top:-10px;
-  right:12px;
-  background:#7B5CFF;
-  padding:6px 10px;
-  font-size:11px;
-  border-radius:999px;
+.card p{
+  color:#aaa;
+  font-size:14px;
 }
 
-/* ================= CONTACT ================= */
+/* CONTACT */
 form{
-  max-width:520px;
+  max-width:500px;
   margin:40px auto 0;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:15px;
 }
 
 input, textarea{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#1a1a22;
+  color:#fff;
+}
+
+button{
   padding:14px;
   border:none;
-  border-radius:12px;
-  background:#151520;
+  border-radius:30px;
+  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
+  cursor:pointer;
 }
 
-/* ================= FOOTER FIX ================= */
-.mobile-cta{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#7B5CFF;
-  text-align:center;
-  padding:15px;
-  z-index:999;
-}
-
-/* FORCE BUTTON STYLE INSIDE FOOTER */
-.mobile-cta a{
-  display:inline-block;
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  padding:10px 20px;
-  border-radius:999px;
-  background:rgba(0,0,0,0.15);
-}
 </style>
 </head>
 
 <body>
-
-<nav id="nav">
-  <div class="brand">Giles Web Design</div>
-
-  <!-- NAV RESTORED -->
-  <div class="nav-links">
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -258,7 +216,7 @@ input, textarea{
 
   <div class="hero-content">
 
-    <div class="tag">AFFORDABLE — YOUR WAY</div>
+    <div class="tagline">AFFORDABLE — YOUR WAY</div>
 
     <img src="logo.png" class="logo">
 
@@ -266,32 +224,41 @@ input, textarea{
 
     <p>Designed to attract customers, build trust, and grow your business.</p>
 
-    <a class="btn" href="sms:2397884380">Message Me</a>
+    <a href="sms:2397884380" class="btn">Message Me</a>
 
   </div>
 
 </section>
 
+<!-- PORTFOLIO VIDEO -->
+<section class="section fade">
+  <h2>Recent Work</h2>
+
+  <video controls>
+    <source src="demo.mp4" type="video/mp4">
+  </video>
+
+</section>
+
 <!-- PRICING -->
-<section class="section fade" id="pricing">
+<section class="section fade">
   <h2>Website Packages</h2>
 
   <div class="cards">
 
-    <div class="card fade">
+    <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
       <p>Simple, clean website to get your business online fast.</p>
     </div>
 
-    <div class="card fade" style="border:1px solid #7B5CFF;">
-      <div class="badge">Most Popular</div>
+    <div class="card" style="border:1px solid #7B5CFF;">
       <h3>Business Growth</h3>
       <div class="price">$250</div>
       <p>Designed to attract local customers and grow your presence.</p>
     </div>
 
-    <div class="card fade">
+    <div class="card">
       <h3>Premium</h3>
       <div class="price">$500</div>
       <p>Advanced design and features to scale your business.</p>
@@ -301,45 +268,17 @@ input, textarea{
 </section>
 
 <!-- CONTACT -->
-<section class="section fade" id="contact">
+<section class="section fade">
   <h2>Contact Me</h2>
 
-  <form action="https://formspree.io/f/yourFormID" method="POST">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <input type="text" placeholder="Business Type">
-    <input type="text" placeholder="Budget Range">
-    <textarea rows="5" placeholder="Your Message"></textarea>
-    <button class="btn" type="submit">Send Message</button>
+  <form action="mailto:tylorg811@gmail.com" method="POST" enctype="text/plain">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
   </form>
+
 </section>
 
-<!-- FOOTER -->
-<div class="mobile-cta">
-  <a href="sms:2397884380">Message Me Now</a>
-</div>
-
 <script>
-const nav=document.getElementById("nav");
-
-window.addEventListener("scroll",()=>{
-  nav.classList.toggle("scrolled", window.scrollY>10);
-});
-
-const fades=document.querySelectorAll(".fade");
-
-function runFade(){
-  fades.forEach(el=>{
-    const top=el.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){
-      el.classList.add("show");
-    }
-  });
-}
-
-window.addEventListener("scroll",runFade);
-window.addEventListener("load",runFade);
-</script>
-
-</body>
-</html>
+const
