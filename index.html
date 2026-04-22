@@ -9,11 +9,11 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   background:#0B0B0F;
   color:#fff;
   font-family:'Inter',sans-serif;
-  overflow-x:hidden;
 }
 
 /* HERO */
@@ -27,22 +27,39 @@ body{
   overflow:hidden;
 }
 
-/* ANIMATED BACKGROUND */
+/* Animated gradient */
 .hero::before{
   content:"";
   position:absolute;
   width:200%;
   height:200%;
-  background:radial-gradient(circle at 30% 30%, #7B5CFF, transparent 40%),
-             radial-gradient(circle at 70% 70%, #00C2FF, transparent 40%);
-  animation:moveBg 12s linear infinite;
+  background:
+    radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
+    radial-gradient(circle at 80% 70%, #00C2FF, transparent 40%);
+  animation:moveBg 10s linear infinite;
   opacity:0.25;
 }
 
 @keyframes moveBg{
   0%{transform:translate(0,0);}
-  50%{transform:translate(-10%, -10%);}
+  50%{transform:translate(-8%, -10%);}
   100%{transform:translate(0,0);}
+}
+
+/* floating orbs */
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:0.3;
+  animation:float 12s ease-in-out infinite alternate;
+}
+.orb1{width:400px;height:400px;background:#7B5CFF;top:-100px;left:-100px;}
+.orb2{width:300px;height:300px;background:#00C2FF;bottom:-100px;right:-100px;}
+
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(60px);}
 }
 
 .hero-content{
@@ -72,7 +89,6 @@ body{
 .hero h1{
   font-family:'Playfair Display', serif;
   font-size:48px;
-  line-height:1.2;
 }
 
 .hero p{
@@ -80,9 +96,10 @@ body{
   color:#aaa;
 }
 
+/* LOWERED BUTTON */
 .btn{
   display:inline-block;
-  margin-top:22px;
+  margin-top:35px;
   padding:14px 32px;
   border-radius:40px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
@@ -92,11 +109,11 @@ body{
 
 /* SECTION */
 .section{
-  padding:65px 20px;
+  padding:70px 20px;
   text-align:center;
 }
 
-/* ANIMATION */
+/* FADE */
 .fade{
   opacity:0;
   transform:translateY(50px);
@@ -110,15 +127,16 @@ body{
 /* PRICING */
 .cards{
   display:flex;
-  gap:20px;
+  gap:25px;
   justify-content:center;
   flex-wrap:wrap;
 }
 
 .card{
-  background:rgba(255,255,255,0.03);
-  padding:25px;
-  border-radius:18px;
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(10px);
+  padding:30px;
+  border-radius:20px;
   width:260px;
   transition:0.3s;
 }
@@ -127,11 +145,11 @@ body{
   transform:translateY(-8px);
 }
 
-/* FEATURED CARD */
+/* FEATURED */
 .featured{
-  transform:scale(1.08);
+  transform:scale(1.1);
   border:1px solid #7B5CFF;
-  box-shadow:0 0 30px rgba(123,92,255,0.3);
+  box-shadow:0 0 35px rgba(123,92,255,0.4);
   position:relative;
 }
 
@@ -141,15 +159,15 @@ body{
   left:50%;
   transform:translateX(-50%);
   background:#7B5CFF;
-  padding:5px 12px;
+  padding:6px 14px;
   border-radius:20px;
   font-size:12px;
 }
 
 .price{
-  font-size:30px;
+  font-size:34px;
+  margin:12px 0;
   color:#7B5CFF;
-  margin:10px 0;
 }
 
 /* PORTFOLIO */
@@ -168,40 +186,46 @@ video{
 
 /* TESTIMONIALS */
 .testimonials{
-  max-width:700px;
-  margin:30px auto 0;
   display:flex;
-  flex-direction:column;
+  flex-wrap:wrap;
   gap:15px;
+  justify-content:center;
+  margin-top:25px;
 }
 
 .testimonial{
-  background:rgba(255,255,255,0.03);
-  padding:15px;
-  border-radius:12px;
-  color:#ccc;
+  background:rgba(255,255,255,0.04);
+  padding:18px;
+  border-radius:14px;
+  max-width:260px;
+  text-align:left;
   font-size:14px;
+  color:#ccc;
+  transition:0.3s;
 }
 
-/* CONTACT */
-.contact-box{
-  max-width:600px;
+.testimonial:hover{
+  transform:translateY(-5px);
+}
+
+/* CONTACT (CLEAN STYLE) */
+.contact{
+  max-width:500px;
   margin:30px auto;
-  background:rgba(255,255,255,0.04);
-  padding:25px;
-  border-radius:18px;
 }
 
 input, textarea{
-  padding:12px;
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
   border:none;
   border-radius:10px;
   background:#111118;
   color:#fff;
-  margin-bottom:10px;
 }
 
 button{
+  width:100%;
   padding:14px;
   border:none;
   border-radius:30px;
@@ -228,6 +252,9 @@ button{
 
 <!-- HERO -->
 <section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
   <div class="hero-content">
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
     <img src="logo.png" class="logo">
@@ -242,7 +269,6 @@ button{
   <h2>Website Packages</h2>
 
   <div class="cards">
-
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
@@ -259,9 +285,8 @@ button{
     <div class="card">
       <h3>Premium</h3>
       <div class="price">$500</div>
-      <p>High-end design built for conversions.</p>
+      <p>High-end conversion design.</p>
     </div>
-
   </div>
 </section>
 
@@ -274,27 +299,25 @@ button{
   </video>
 
   <div class="port-desc">
-    Built a clean, modern website for a landscaping business to help them look more professional and stand out locally. Focused on mobile design and making it easy for customers to reach out.
+    Built a modern landscaping website focused on mobile users and generating more calls.
   </div>
 
   <div class="testimonials">
-    <div class="testimonial">“Way better than what I had before. Customers actually mention my website now.”</div>
-    <div class="testimonial">“Looks professional and I started getting more calls pretty quickly.”</div>
-    <div class="testimonial">“Super easy process and the site came out clean.”</div>
+    <div class="testimonial">“Customers actually bring up my site now. Looks way better.”</div>
+    <div class="testimonial">“Started getting more calls after switching.”</div>
+    <div class="testimonial">“Super clean and easy to work with.”</div>
   </div>
-
 </section>
 
 <!-- CONTACT -->
 <section class="section fade">
-  <div class="contact-box">
-    <h2>Let’s Build Your Website</h2>
-    <p style="color:#aaa;margin-bottom:15px;">Tell me about your business.</p>
+  <h2>Let’s Build Your Website</h2>
 
+  <div class="contact">
     <form id="form" action="YOUR_FORMSPREE_URL" method="POST">
-      <input type="text" name="name" required placeholder="Your Name">
-      <input type="email" name="email" required placeholder="Your Email">
-      <textarea name="message" required placeholder="Tell me about your business..."></textarea>
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Tell me about your business..." required></textarea>
       <button type="submit">Start My Website</button>
     </form>
 
@@ -310,6 +333,7 @@ const observer=new IntersectionObserver(entries=>{
     }
   });
 },{threshold:0.1});
+
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 
 const form=document.getElementById('form');
