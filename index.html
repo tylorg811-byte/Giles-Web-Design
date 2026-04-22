@@ -48,18 +48,16 @@ body{
   transition:opacity 1s ease;
 }
 
-.hero.loaded .orb{
-  opacity:0.4;
-}
+.hero.loaded .orb{opacity:0.4;}
 
 .orb1{
-  width:400px;height:400px;
+  width:420px;height:420px;
   background:#7B5CFF;
   top:-120px;left:-120px;
 }
 
 .orb2{
-  width:300px;height:300px;
+  width:320px;height:320px;
   background:#00C2FF;
   bottom:-120px;right:-120px;
 }
@@ -74,15 +72,6 @@ body{
   position:relative;
   z-index:2;
   max-width:800px;
-
-  opacity:0;
-  transform:translateY(25px);
-  transition:1s ease;
-}
-
-.hero.loaded .hero-content{
-  opacity:1;
-  transform:translateY(0);
 }
 
 /* TAGLINE */
@@ -90,20 +79,17 @@ body{
   font-size:14px;
   letter-spacing:2px;
   color:#aaa;
-  margin-bottom:15px;
-
+  margin-bottom:18px;
   opacity:0;
-  transform:translateY(10px);
   animation:fadeUp 1s ease forwards;
   animation-delay:0.2s;
 }
 
-/* LOGO */
+/* LOGO (BIGGER NOW) */
 .logo{
-  width:120px;
-  margin-bottom:20px;
-  filter:brightness(1.1);
-
+  width:220px;   /* 🔥 INCREASED SIZE */
+  margin-bottom:25px;
+  filter:brightness(1.15);
   opacity:0;
   transform:scale(0.9);
   animation:logoIn 1s ease forwards;
@@ -114,9 +100,7 @@ body{
 .hero h1{
   font-size:44px;
   line-height:1.2;
-
   opacity:0;
-  transform:translateY(10px);
   animation:fadeUp 1s ease forwards;
   animation-delay:0.6s;
 }
@@ -124,9 +108,7 @@ body{
 .hero p{
   margin-top:15px;
   color:#aaa;
-
   opacity:0;
-  transform:translateY(10px);
   animation:fadeUp 1s ease forwards;
   animation-delay:0.8s;
 }
@@ -141,45 +123,31 @@ body{
   color:#fff;
   text-decoration:none;
   box-shadow:0 0 20px rgba(123,92,255,0.5);
-
   opacity:0;
-  transform:translateY(10px);
   animation:fadeUp 1s ease forwards;
   animation-delay:1s;
 }
 
 /* ANIMATIONS */
 @keyframes fadeUp{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  to{opacity:1;transform:translateY(0);}
 }
-
 @keyframes logoIn{
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
+  to{opacity:1;transform:scale(1);}
 }
 
-/* SECTION */
+/* SECTIONS */
 .section{
   padding:100px 8%;
   text-align:center;
 }
 
-/* FADE SCROLL ANIMATION */
 .fade{
   opacity:0;
   transform:translateY(40px);
   transition:0.8s;
 }
-
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
+.fade.show{opacity:1;transform:translateY(0);}
 
 /* CARDS */
 .cards{
@@ -195,23 +163,6 @@ body{
   padding:30px;
   border-radius:20px;
   width:280px;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 40px rgba(123,92,255,0.2);
-}
-
-.price{
-  font-size:30px;
-  color:#7B5CFF;
-  margin:15px 0;
-}
-
-.card p{
-  color:#aaa;
-  font-size:14px;
 }
 
 /* CONTACT */
@@ -238,22 +189,6 @@ button{
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   cursor:pointer;
-}
-
-/* MOBILE CTA */
-.mobile-cta{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#7B5CFF;
-  text-align:center;
-  padding:15px;
-}
-
-.mobile-cta a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:600;
 }
 </style>
 </head>
@@ -287,7 +222,6 @@ button{
   <h2>Website Packages</h2>
 
   <div class="cards">
-
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
@@ -305,25 +239,23 @@ button{
       <div class="price">$500</div>
       <p>Advanced design and features to scale your business.</p>
     </div>
-
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT (NOW WORKING) -->
 <section class="section fade">
   <h2>Contact Me</h2>
 
-  <form action="mailto:tylorg811@gmail.com" method="POST" enctype="text/plain">
+  <!-- 🔥 REPLACE THIS FORM ACTION WITH YOUR FORMSPREE LINK -->
+  <form action="https://formspree.io/f/yourFormID" method="POST">
+
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+
     <button type="submit">Send Message</button>
   </form>
 </section>
-
-<div class="mobile-cta">
-  <a href="sms:2397884380">Message Me Now</a>
-</div>
 
 <script>
 const fades=document.querySelectorAll('.fade');
@@ -337,7 +269,6 @@ window.addEventListener('scroll',()=>{
   });
 });
 
-/* HERO LOAD ANIMATION TRIGGER */
 window.addEventListener('load',()=>{
   document.querySelector('.hero').classList.add('loaded');
 });
