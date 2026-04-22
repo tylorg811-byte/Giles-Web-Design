@@ -9,7 +9,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;}
+body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
 
 /* HEADER */
 .header{
@@ -33,21 +33,31 @@ text-align:center;
 position:relative;
 overflow:hidden;
 }
+
+/* 🔥 ANIMATED GRADIENT */
 .hero-bg{
 position:absolute;
 width:200%;height:200%;
-background:
-radial-gradient(circle at 30% 30%, #7B5CFF, transparent 40%),
-radial-gradient(circle at 70% 70%, #7B5CFF, transparent 40%);
-opacity:.2;
+background:radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
+radial-gradient(circle at 80% 70%, #9F7BFF, transparent 40%);
+animation:moveGradient 12s ease-in-out infinite;
+opacity:.25;
 }
+
+@keyframes moveGradient{
+0%{transform:translate(0,0);}
+50%{transform:translate(-10%, -10%);}
+100%{transform:translate(0,0);}
+}
+
 .hero-content{
-max-width:600px;
 position:relative;
-animation:fadeUp 1s ease forwards;
+max-width:600px;
+animation:fadeUp .8s ease forwards;
 }
+
 @keyframes fadeUp{
-from{opacity:0;transform:translateY(40px);}
+from{opacity:0;transform:translateY(30px);}
 to{opacity:1;transform:translateY(0);}
 }
 
@@ -69,13 +79,38 @@ color:#fff;
 text-decoration:none;
 }
 
-/* SECTIONS */
-.section{padding:70px 20px;text-align:center;}
+/* SECTION */
+.section{
+padding:70px 20px;
+text-align:center;
+position:relative;
+}
+
+/* 🔥 SECTION SEPARATION */
+.section::before{
+content:"";
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:60%;
+height:1px;
+background:linear-gradient(to right,transparent,#7B5CFF,transparent);
+opacity:.2;
+}
+
 .section h2{margin-bottom:25px;}
 
-/* SCROLL */
-.fade{opacity:0;transform:translateY(40px);transition:.7s;}
-.fade.show{opacity:1;transform:translateY(0);}
+/* SCROLL (SNAPPY) */
+.fade{
+opacity:0;
+transform:translateY(25px);
+transition:.4s ease;
+}
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
 
 /* GLASS */
 .glass{
@@ -84,20 +119,56 @@ backdrop-filter:blur(14px);
 border:1px solid rgba(255,255,255,0.08);
 }
 
+/* TOGGLE */
+.toggle{
+display:flex;
+justify-content:center;
+margin-bottom:20px;
+}
+.toggle-inner{
+background:#111;
+border-radius:30px;
+padding:4px;
+display:flex;
+}
+.toggle button{
+border:none;
+padding:8px 16px;
+border-radius:20px;
+background:transparent;
+color:#aaa;
+cursor:pointer;
+}
+.toggle .active{
+background:#7B5CFF;
+color:#fff;
+}
+
 /* PRICING */
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+
 .card{
 width:260px;
 padding:28px;
 border-radius:18px;
-transition:.3s;
+transition:.2s;
+transform-style:preserve-3d;
 }
+
+/* HOVER LIFT */
 .card:hover{
 transform:translateY(-8px);
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
+
+/* 🔥 TILT */
+.card.tilt:hover{
+transform:rotateX(3deg) rotateY(-3deg) translateY(-8px);
+}
+
 .price{font-size:36px;color:#9F7BFF;margin:10px 0;}
 
+/* FEATURED BORDER */
 .featured{
 transform:scale(1.08);
 position:relative;
@@ -118,6 +189,7 @@ z-index:-1;
 50%{background-position:100%}
 100%{background-position:0%}
 }
+
 .badge{
 position:absolute;
 top:-12px;
@@ -131,80 +203,35 @@ font-size:12px;
 
 /* FEATURES */
 .features{display:none;text-align:left;margin-top:10px;}
-.features li{
-list-style:none;
-margin-bottom:6px;
-padding-left:16px;
-position:relative;
-}
-.features li::before{
-content:"✔";
-position:absolute;
-left:0;
-color:#7B5CFF;
-}
-
-/* ABOUT */
-.about{
-max-width:600px;
-margin:auto;
-color:#aaa;
-}
+.features li{list-style:none;margin-bottom:6px;padding-left:16px;position:relative;}
+.features li::before{content:"✔";position:absolute;left:0;color:#7B5CFF;}
 
 /* PROJECT */
-.project{
-max-width:900px;
-margin:30px auto;
-border-radius:18px;
-overflow:hidden;
-}
+.project{max-width:900px;margin:30px auto;border-radius:18px;overflow:hidden;}
 .project video{width:100%;}
 .project-info{padding:20px;text-align:left;}
 .project-tag{color:#7B5CFF;font-size:12px;}
 
 /* TESTIMONIALS */
-.testimonials{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:18px;
-}
+.testimonials{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;}
 .testimonial{
-width:260px;
-padding:18px;
-border-radius:14px;
-text-align:left;
-transition:.3s;
+width:260px;padding:18px;border-radius:14px;
+transition:.2s;
 }
 .testimonial:hover{
 transform:translateY(-6px);
 box-shadow:0 10px 25px rgba(123,92,255,0.25);
 }
-.testimonial strong{display:block;margin-top:10px;}
 
 /* CONTACT */
-.contact-box{
-max-width:500px;
-margin:auto;
-padding:25px;
-border-radius:18px;
-}
+.contact-box{max-width:500px;margin:auto;padding:25px;border-radius:18px;}
 input,textarea{
-width:100%;
-padding:14px;
-margin-bottom:12px;
-border:none;
-border-radius:10px;
-background:#111;
-color:#fff;
+width:100%;padding:14px;margin-bottom:12px;
+border:none;border-radius:10px;background:#111;color:#fff;
 }
 button.submit{
-width:100%;
-padding:14px;
-border:none;
-border-radius:30px;
-background:#7B5CFF;
-color:#fff;
+width:100%;padding:14px;border:none;border-radius:30px;
+background:#7B5CFF;color:#fff;
 }
 </style>
 </head>
@@ -222,62 +249,49 @@ color:#fff;
 <div class="tagline">AFFORDABLE — YOUR WAY</div>
 <img src="logo.png" class="logo">
 <h1>Look Professional.<br>Get More Customers.</h1>
-<p>Affordable websites that help your business stand out.</p>
+<p>Affordable websites that convert visitors into customers.</p>
 <a href="#contact" class="btn">Message Me</a>
 </div>
-</section>
-
-<!-- ABOUT -->
-<section class="section fade">
-<h2>About</h2>
-<p class="about">Web Designing since 2015. I help businesses create clean, modern websites that actually bring in customers.</p>
 </section>
 
 <!-- PRICING -->
 <section class="section fade">
 <h2>Website Packages</h2>
 
-<div>
-<button onclick="toggleView('simple')">Overview</button>
-<button onclick="toggleView('full')">Full Breakdown</button>
+<div class="toggle">
+<div class="toggle-inner">
+<button class="active" onclick="toggleView('simple', this)">Overview</button>
+<button onclick="toggleView('full', this)">Breakdown</button>
+</div>
 </div>
 
 <div class="cards">
 
-<div class="card glass">
+<div class="card glass tilt">
 <h3>Starter</h3>
 <div class="price">$100</div>
 <p class="simple">Simple site to get online fast.</p>
 <ul class="features">
-<li>1 Page Website</li>
-<li>Mobile Friendly</li>
-<li>Basic SEO</li>
-<li>1 Revision</li>
+<li>1 Page</li><li>Mobile Ready</li><li>Basic SEO</li>
 </ul>
 </div>
 
-<div class="card glass featured">
+<div class="card glass featured tilt">
 <div class="badge">Most Popular</div>
 <h3>Business Growth</h3>
 <div class="price">$250</div>
-<p class="simple">Best option to attract customers.</p>
+<p class="simple">Best for getting customers.</p>
 <ul class="features">
-<li>Up to 3 Pages</li>
-<li>Google Maps</li>
-<li>Local SEO</li>
-<li>2 Revisions</li>
+<li>3 Pages</li><li>SEO</li><li>Google Maps</li>
 </ul>
 </div>
 
-<div class="card glass">
+<div class="card glass tilt">
 <h3>Premium</h3>
 <div class="price">$500</div>
-<p class="simple">High-end conversion design.</p>
+<p class="simple">High-end business presence.</p>
 <ul class="features">
-<li>Up to 5 Pages</li>
-<li>Advanced SEO</li>
-<li>Booking System</li>
-<li>Priority Support</li>
+<li>5 Pages</li><li>Booking</li><li>Priority Support</li>
 </ul>
 </div>
 
@@ -292,11 +306,10 @@ color:#fff;
 <video autoplay muted loop playsinline>
 <source src="demo.mp4">
 </video>
-
 <div class="project-info">
 <span class="project-tag">Landscaping Business</span>
 <h3>Modern Local Website</h3>
-<p>Designed to increase calls, build trust, and convert visitors into real customers.</p>
+<p>Designed to generate more calls and build trust instantly.</p>
 </div>
 </div>
 
@@ -344,13 +357,16 @@ document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 /* PARALLAX */
 window.addEventListener('scroll',()=>{
 document.getElementById('parallax').style.transform=
-`translateY(${window.scrollY * 0.25}px)`;
+`translateY(${window.scrollY * 0.2}px)`;
 });
 
 /* TOGGLE */
-function toggleView(type){
+function toggleView(type,btn){
 document.querySelectorAll('.simple').forEach(el=>el.style.display= type==='simple'?'block':'none');
 document.querySelectorAll('.features').forEach(el=>el.style.display= type==='full'?'block':'none');
+
+document.querySelectorAll('.toggle button').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
 }
 </script>
 
