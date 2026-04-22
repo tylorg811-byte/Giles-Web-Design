@@ -5,56 +5,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giles Web Design</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Luxury + modern pairing -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   background:#0B0B0F;
   color:#fff;
   overflow-x:hidden;
+  font-family:'Inter',sans-serif;
 }
 
-/* ================= NAV ================= */
+/* ================= NAV (PREMIUM UPGRADE) ================= */
 nav{
   position:fixed;
   top:0;
   width:100%;
   z-index:1000;
-  padding:18px 8%;
+  padding:16px 8%;
 
   display:flex;
   justify-content:space-between;
   align-items:center;
 
-  background:rgba(20,20,30,0.35); /* FIX: always visible */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
+  background:rgba(20,20,30,0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom:1px solid rgba(255,255,255,0.06);
-  transition:0.3s ease;
 }
 
 nav.scrolled{
   background:rgba(20,20,30,0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom:1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(18px);
 }
 
-nav .brand{
-  font-weight:600;
+/* LUXURY BRAND FONT */
+.brand{
+  font-family:'Playfair Display', serif;
+  font-size:20px;
+  letter-spacing:0.5px;
 }
 
-nav a{
-  color:#aaa;
+/* MODERN NAV LINKS (NOT PLAIN TEXT ANYMORE) */
+.nav-links a{
+  color:#cfcfcf;
   text-decoration:none;
-  margin-left:20px;
-  font-size:14px;
+  margin-left:10px;
+  font-size:13px;
+
+  padding:8px 14px;
+  border-radius:999px;
+
+  background:rgba(255,255,255,0.04);
+  transition:0.25s ease;
 }
 
-nav a:hover{color:#fff;}
+.nav-links a:hover{
+  background:rgba(123,92,255,0.25);
+  color:#fff;
+}
 
 /* ================= HERO ================= */
 .hero{
@@ -111,29 +122,67 @@ nav a:hover{color:#fff;}
   bottom:-120px;right:-120px;
 }
 
-/* HERO CONTENT (IMPORTANT FIX: NO PARALLAX OVERRIDE) */
+/* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
   max-width:800px;
 }
 
-/* ANIMATION SAFE (no transform conflicts) */
-.tagline, .hero h1, .hero p, .btn, .logo{
+/* TAGLINE */
+.tagline{
+  font-size:13px;
+  letter-spacing:2px;
+  color:#aaa;
+  margin-bottom:18px;
   opacity:0;
-  transform:translateY(12px);
   animation:fadeUp 1s ease forwards;
+  animation-delay:0.2s;
 }
 
-.tagline{animation-delay:0.2s;}
-.logo{animation-delay:0.35s;}
-.hero h1{animation-delay:0.5s;}
-.hero p{animation-delay:0.7s;}
-.btn{animation-delay:0.9s;}
-
+/* LOGO */
 .logo{
   width:260px;
   margin-bottom:25px;
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.35s;
+}
+
+/* TEXT */
+.hero h1{
+  font-size:44px;
+  line-height:1.2;
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.5s;
+}
+
+.hero p{
+  margin-top:15px;
+  color:#aaa;
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.7s;
+}
+
+/* BUTTON FIX (NO MORE DEFAULT LINK BEHAVIOR) */
+.btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:14px 32px;
+  border-radius:40px;
+  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
+  color:#fff;
+  text-decoration:none;
+
+  font-weight:500;
+  cursor:pointer;
+  user-select:none;
+
+  opacity:0;
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.9s;
 }
 
 @keyframes fadeUp{
@@ -146,7 +195,7 @@ nav a:hover{color:#fff;}
   text-align:center;
 }
 
-/* SCROLL FADE FIX */
+/* IMPORTANT FIX: footer is EXCLUDED from fade system */
 .fade{
   opacity:0;
   transform:translateY(40px);
@@ -172,11 +221,6 @@ nav a:hover{color:#fff;}
   padding:30px;
   border-radius:20px;
   width:280px;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:translateY(-10px);
 }
 
 .price{
@@ -212,12 +256,7 @@ button{
   cursor:pointer;
 }
 
-/* FIX: prevents overlap with footer */
-.section:last-of-type{
-  padding-bottom:180px;
-}
-
-/* FOOTER CTA */
+/* ================= FOOTER CTA (FIXED NOT TO TRIGGER ANIMATION) ================= */
 .mobile-cta{
   position:fixed;
   bottom:0;
@@ -226,6 +265,10 @@ button{
   text-align:center;
   padding:15px;
   z-index:999;
+
+  /* prevent scroll animation interference */
+  opacity:1 !important;
+  transform:none !important;
 }
 
 .mobile-cta a{
@@ -238,14 +281,17 @@ button{
 
 <body>
 
+<!-- NAV -->
 <nav id="nav">
   <div class="brand">Giles Web Design</div>
-  <div>
+
+  <div class="nav-links">
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
 
   <div class="orb orb1"></div>
@@ -261,12 +307,14 @@ button{
 
     <p>Designed to attract customers, build trust, and grow your business.</p>
 
-    <a href="sms:2397884380" class="btn">Message Me</a>
+    <!-- FIXED BUTTON -->
+    <a class="btn" href="sms:2397884380">Message Me</a>
 
   </div>
 
 </section>
 
+<!-- PRICING -->
 <section class="section fade" id="pricing">
   <h2>Website Packages</h2>
 
@@ -291,6 +339,7 @@ button{
   </div>
 </section>
 
+<!-- CONTACT -->
 <section class="section fade" id="contact">
   <h2>Contact Me</h2>
 
@@ -302,23 +351,12 @@ button{
   </form>
 </section>
 
+<!-- FOOTER CTA -->
 <div class="mobile-cta">
   <a href="sms:2397884380">Message Me Now</a>
 </div>
 
 <script>
-/* NAV SCROLL */
-const nav=document.getElementById("nav");
-
-window.addEventListener("scroll",()=>{
-  if(window.scrollY>10){
-    nav.classList.add("scrolled");
-  }else{
-    nav.classList.remove("scrolled");
-  }
-});
-
-/* SCROLL FADE FIX (IMPORTANT: RUN ON LOAD TOO) */
 const fades=document.querySelectorAll('.fade');
 
 function checkFade(){
@@ -333,7 +371,12 @@ function checkFade(){
 window.addEventListener("scroll",checkFade);
 window.addEventListener("load",()=>{
   checkFade();
-  document.querySelector(".hero").classList.add("loaded");
+});
+
+/* NAV SCROLL EFFECT */
+const nav=document.getElementById("nav");
+window.addEventListener("scroll",()=>{
+  nav.classList.toggle("scrolled", window.scrollY>10);
 });
 </script>
 
