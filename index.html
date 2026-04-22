@@ -16,7 +16,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ================= GLASS NAVBAR ================= */
+/* ================= NAV ================= */
 nav{
   position:fixed;
   top:0;
@@ -28,19 +28,23 @@ nav{
   justify-content:space-between;
   align-items:center;
 
+  background:rgba(20,20,30,0.35); /* FIX: always visible */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom:1px solid rgba(255,255,255,0.06);
   transition:0.3s ease;
 }
 
 nav.scrolled{
-  background:rgba(20,20,30,0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom:1px solid rgba(255,255,255,0.08);
+  background:rgba(20,20,30,0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 nav .brand{
   font-weight:600;
-  letter-spacing:1px;
 }
 
 nav a{
@@ -48,12 +52,9 @@ nav a{
   text-decoration:none;
   margin-left:20px;
   font-size:14px;
-  transition:0.2s;
 }
 
-nav a:hover{
-  color:#fff;
-}
+nav a:hover{color:#fff;}
 
 /* ================= HERO ================= */
 .hero{
@@ -94,7 +95,6 @@ nav a:hover{
   filter:blur(100px);
   opacity:0;
   transition:opacity 1s ease;
-  will-change: transform;
 }
 
 .hero.loaded .orb{opacity:0.4;}
@@ -111,66 +111,31 @@ nav a:hover{
   bottom:-120px;right:-120px;
 }
 
-/* HERO CONTENT */
+/* HERO CONTENT (IMPORTANT FIX: NO PARALLAX OVERRIDE) */
 .hero-content{
   position:relative;
   z-index:2;
   max-width:800px;
-  transform:translateY(0);
 }
 
-/* LOGO */
+/* ANIMATION SAFE (no transform conflicts) */
+.tagline, .hero h1, .hero p, .btn, .logo{
+  opacity:0;
+  transform:translateY(12px);
+  animation:fadeUp 1s ease forwards;
+}
+
+.tagline{animation-delay:0.2s;}
+.logo{animation-delay:0.35s;}
+.hero h1{animation-delay:0.5s;}
+.hero p{animation-delay:0.7s;}
+.btn{animation-delay:0.9s;}
+
 .logo{
   width:260px;
   margin-bottom:25px;
-  filter:brightness(1.15);
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.3s;
 }
 
-/* TEXT */
-.tagline{
-  font-size:14px;
-  letter-spacing:2px;
-  color:#aaa;
-  margin-bottom:18px;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.2s;
-}
-
-.hero h1{
-  font-size:44px;
-  line-height:1.2;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.5s;
-}
-
-.hero p{
-  margin-top:15px;
-  color:#aaa;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.7s;
-}
-
-.btn{
-  display:inline-block;
-  margin-top:25px;
-  padding:14px 32px;
-  border-radius:40px;
-  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
-  color:#fff;
-  text-decoration:none;
-  box-shadow:0 0 20px rgba(123,92,255,0.5);
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.9s;
-}
-
-/* ANIMATION */
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0);}
 }
@@ -179,6 +144,18 @@ nav a:hover{
 .section{
   padding:100px 8%;
   text-align:center;
+}
+
+/* SCROLL FADE FIX */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* ================= PRICING ================= */
@@ -200,7 +177,6 @@ nav a:hover{
 
 .card:hover{
   transform:translateY(-10px);
-  box-shadow:0 0 40px rgba(123,92,255,0.2);
 }
 
 .price{
@@ -210,7 +186,7 @@ nav a:hover{
   font-weight:600;
 }
 
-/* CONTACT */
+/* ================= CONTACT ================= */
 form{
   max-width:500px;
   margin:40px auto 0;
@@ -236,7 +212,12 @@ button{
   cursor:pointer;
 }
 
-/* MOBILE CTA */
+/* FIX: prevents overlap with footer */
+.section:last-of-type{
+  padding-bottom:180px;
+}
+
+/* FOOTER CTA */
 .mobile-cta{
   position:fixed;
   bottom:0;
@@ -244,7 +225,9 @@ button{
   background:#7B5CFF;
   text-align:center;
   padding:15px;
+  z-index:999;
 }
+
 .mobile-cta a{
   color:#fff;
   text-decoration:none;
@@ -255,7 +238,6 @@ button{
 
 <body>
 
-<!-- NAVBAR -->
 <nav id="nav">
   <div class="brand">Giles Web Design</div>
   <div>
@@ -264,13 +246,12 @@ button{
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
 
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
 
-  <div class="hero-content" id="heroContent">
+  <div class="hero-content">
 
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
 
@@ -286,8 +267,7 @@ button{
 
 </section>
 
-<!-- PRICING -->
-<section class="section" id="pricing">
+<section class="section fade" id="pricing">
   <h2>Website Packages</h2>
 
   <div class="cards">
@@ -311,8 +291,7 @@ button{
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section" id="contact">
+<section class="section fade" id="contact">
   <h2>Contact Me</h2>
 
   <form action="https://formspree.io/f/yourFormID" method="POST">
@@ -328,34 +307,33 @@ button{
 </div>
 
 <script>
-/* NAVBAR BLUR ON SCROLL */
-const nav = document.getElementById("nav");
+/* NAV SCROLL */
+const nav=document.getElementById("nav");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 20) {
+window.addEventListener("scroll",()=>{
+  if(window.scrollY>10){
     nav.classList.add("scrolled");
-  } else {
+  }else{
     nav.classList.remove("scrolled");
   }
 });
 
-/* HERO PARALLAX */
-const hero = document.querySelector(".hero");
-const orb1 = document.querySelector(".orb1");
-const orb2 = document.querySelector(".orb2");
-const heroContent = document.getElementById("heroContent");
+/* SCROLL FADE FIX (IMPORTANT: RUN ON LOAD TOO) */
+const fades=document.querySelectorAll('.fade');
 
-window.addEventListener("scroll", () => {
-  let y = window.scrollY;
+function checkFade(){
+  fades.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      el.classList.add('show');
+    }
+  });
+}
 
-  orb1.style.transform = `translateY(${y * 0.2}px)`;
-  orb2.style.transform = `translateY(${y * -0.15}px)`;
-  heroContent.style.transform = `translateY(${y * 0.1}px)`;
-});
-
-/* HERO LOAD */
-window.addEventListener("load", () => {
-  hero.classList.add("loaded");
+window.addEventListener("scroll",checkFade);
+window.addEventListener("load",()=>{
+  checkFade();
+  document.querySelector(".hero").classList.add("loaded");
 });
 </script>
 
