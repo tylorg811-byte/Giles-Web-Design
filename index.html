@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giles Web Design</title>
 
-<!-- Premium serif upgrade -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -32,7 +31,6 @@ nav{
 
   background:rgba(20,20,30,0.35);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
@@ -41,29 +39,9 @@ nav.scrolled{
   backdrop-filter: blur(18px);
 }
 
-/* 🔥 FIXED LUXURY BRAND */
 .brand{
   font-family:'Cormorant Garamond', serif;
   font-size:24px;
-  letter-spacing:0.5px;
-  line-height:1;
-}
-
-/* NAV LINKS */
-.nav-links a{
-  color:#cfcfcf;
-  text-decoration:none;
-  margin-left:10px;
-  font-size:13px;
-  padding:8px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,0.04);
-  transition:0.25s;
-}
-
-.nav-links a:hover{
-  background:rgba(123,92,255,0.25);
-  color:#fff;
 }
 
 /* ================= HERO ================= */
@@ -76,9 +54,9 @@ nav.scrolled{
   position:relative;
   overflow:hidden;
 
-  background: linear-gradient(-45deg, #0B0B0F, #121225, #0B0B0F, #1a1a2e);
-  background-size: 400% 400%;
-  animation: gradientMove 12s ease infinite;
+  background: linear-gradient(-45deg,#0B0B0F,#121225,#0B0B0F,#1a1a2e);
+  background-size:400% 400%;
+  animation:gradientMove 12s ease infinite;
 }
 
 @keyframes gradientMove{
@@ -109,43 +87,49 @@ nav.scrolled{
 
 .hero.loaded .orb{opacity:0.4;}
 
-.orb1{
-  width:420px;height:420px;
-  background:#7B5CFF;
-  top:-120px;left:-120px;
-}
+.orb1{width:420px;height:420px;background:#7B5CFF;top:-120px;left:-120px;}
+.orb2{width:320px;height:320px;background:#00C2FF;bottom:-120px;right:-120px;}
 
-.orb2{
-  width:320px;height:320px;
-  background:#00C2FF;
-  bottom:-120px;right:-120px;
-}
-
-/* HERO CONTENT SPACING FIX */
+/* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
   max-width:800px;
+
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:14px;
 }
 
-/* TAGLINE */
+/* ANIMATION FIX (clean + reliable) */
+.fade-in{
+  opacity:0;
+  transform:translateY(15px);
+  animation:fadeUp 1s ease forwards;
+}
+
+.delay1{animation-delay:0.2s;}
+.delay2{animation-delay:0.4s;}
+.delay3{animation-delay:0.6s;}
+.delay4{animation-delay:0.8s;}
+.delay5{animation-delay:1s;}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* TEXT */
 .tagline{
   font-size:13px;
   letter-spacing:2px;
   color:#aaa;
 }
 
-/* LOGO */
 .logo{
-  width:260px;
-  margin:10px 0;
+  width:240px;
 }
 
-/* TITLE */
 .hero h1{
   font-size:44px;
   line-height:1.15;
@@ -157,14 +141,13 @@ nav.scrolled{
   max-width:600px;
 }
 
-/* BUTTONS ROW FIX */
+/* BUTTONS FIXED SIDE BY SIDE */
 .hero-buttons{
   display:flex;
   gap:12px;
   margin-top:10px;
 }
 
-/* BUTTON */
 .btn{
   display:inline-block;
   padding:14px 28px;
@@ -175,13 +158,12 @@ nav.scrolled{
   font-weight:500;
 }
 
-/* ================= SECTIONS ================= */
+/* ================= PRICING ================= */
 .section{
   padding:100px 8%;
   text-align:center;
 }
 
-/* ================= PRICING FIX (SIDE BY SIDE) ================= */
 .cards{
   display:flex;
   gap:25px;
@@ -195,13 +177,15 @@ nav.scrolled{
   padding:30px;
   border-radius:20px;
   width:280px;
+  position:relative;
   transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-10px);
+  transform:translateY(-8px);
 }
 
+/* PRICE */
 .price{
   font-size:30px;
   color:#7B5CFF;
@@ -209,7 +193,19 @@ nav.scrolled{
   font-weight:600;
 }
 
-/* ================= CONTACT FORM ================= */
+/* 🔥 MOST POPULAR BADGE */
+.badge{
+  position:absolute;
+  top:-12px;
+  right:12px;
+  background:#7B5CFF;
+  color:#fff;
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* ================= CONTACT (PREMIUM REDESIGN) ================= */
 form{
   max-width:520px;
   margin:40px auto 0;
@@ -218,12 +214,29 @@ form{
   gap:12px;
 }
 
-input, textarea, select{
-  padding:12px;
+input, textarea{
+  padding:14px;
   border:none;
-  border-radius:10px;
-  background:#1a1a22;
+  border-radius:12px;
+  background:#151520;
   color:#fff;
+  font-size:14px;
+  outline:none;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+input:focus, textarea:focus{
+  border-color:#7B5CFF;
+}
+
+button{
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
 }
 
 /* FOOTER */
@@ -249,10 +262,6 @@ input, textarea, select{
 
 <nav id="nav">
   <div class="brand">Giles Web Design</div>
-  <div class="nav-links">
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact</a>
-  </div>
 </nav>
 
 <!-- HERO -->
@@ -263,15 +272,15 @@ input, textarea, select{
 
   <div class="hero-content">
 
-    <div class="tagline">AFFORDABLE — YOUR WAY</div>
+    <div class="tagline fade-in delay1">AFFORDABLE — YOUR WAY</div>
 
-    <img src="logo.png" class="logo">
+    <img src="logo.png" class="logo fade-in delay2">
 
-    <h1>Websites That Make Your Business Look Like a Big Deal</h1>
+    <h1 class="fade-in delay3">Websites That Make Your Business Look Like a Big Deal</h1>
 
-    <p>Designed to attract customers, build trust, and grow your business.</p>
+    <p class="fade-in delay4">Designed to attract customers, build trust, and grow your business.</p>
 
-    <div class="hero-buttons">
+    <div class="hero-buttons fade-in delay5">
       <a class="btn" href="sms:2397884380">Message Me</a>
     </div>
 
@@ -280,10 +289,11 @@ input, textarea, select{
 </section>
 
 <!-- PRICING -->
-<section class="section" id="pricing">
+<section class="section">
   <h2>Website Packages</h2>
 
   <div class="cards">
+
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
@@ -291,6 +301,7 @@ input, textarea, select{
     </div>
 
     <div class="card" style="border:1px solid #7B5CFF;">
+      <div class="badge">Most Popular</div>
       <h3>Business Growth</h3>
       <div class="price">$250</div>
       <p>Designed to attract local customers and grow your presence.</p>
@@ -301,11 +312,12 @@ input, textarea, select{
       <div class="price">$500</div>
       <p>Advanced design and features to scale your business.</p>
     </div>
+
   </div>
 </section>
 
-<!-- CONTACT (UPDATED FIELDS) -->
-<section class="section" id="contact">
+<!-- CONTACT -->
+<section class="section">
   <h2>Contact Me</h2>
 
   <form action="https://formspree.io/f/yourFormID" method="POST">
@@ -314,11 +326,11 @@ input, textarea, select{
     <input type="email" name="email" placeholder="Your Email" required>
 
     <input type="text" name="business_type" placeholder="Business Type">
-    <input type="text" name="budget_range" placeholder="Budget Range">
+    <input type="text" name="budget" placeholder="Budget Range">
 
-    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <textarea name="message" rows="5" placeholder="Your Message"></textarea>
 
-    <button type="submit" class="btn">Send Message</button>
+    <button type="submit">Send Message</button>
   </form>
 </section>
 
