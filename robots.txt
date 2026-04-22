@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gileswebdesign.com/sitemap.xml
