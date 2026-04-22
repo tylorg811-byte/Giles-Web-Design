@@ -16,25 +16,6 @@ body{
   overflow-x:hidden;
 }
 
-/* NAV */
-nav{
-  position:fixed;
-  width:100%;
-  top:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:15px;
-  background:rgba(15,15,20,0.7);
-  backdrop-filter:blur(12px);
-  z-index:1000;
-}
-
-nav img{
-  height:60px; /* BIGGER LOGO */
-  filter:brightness(1.1) contrast(1.1); /* removes dull tint look */
-}
-
 /* HERO */
 .hero{
   height:100vh;
@@ -46,6 +27,7 @@ nav img{
   overflow:hidden;
 }
 
+/* GRID */
 .hero::before{
   content:"";
   position:absolute;
@@ -56,12 +38,58 @@ nav img{
   background-size:40px 40px;
 }
 
-.hero-content{
-  z-index:2;
+/* ORBS */
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:0.4;
+  animation:float 12s infinite alternate;
 }
 
+.orb1{
+  width:400px;height:400px;
+  background:#7B5CFF;
+  top:-120px;left:-120px;
+}
+
+.orb2{
+  width:300px;height:300px;
+  background:#00C2FF;
+  bottom:-120px;right:-120px;
+}
+
+@keyframes float{
+  from{transform:translateY(0);}
+  to{transform:translateY(80px);}
+}
+
+/* CONTENT */
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:800px;
+}
+
+/* TAGLINE */
+.tagline{
+  font-size:14px;
+  letter-spacing:2px;
+  color:#aaa;
+  margin-bottom:15px;
+}
+
+/* LOGO */
+.logo{
+  width:120px;
+  margin-bottom:20px;
+  filter:brightness(1.1);
+}
+
+/* TITLE */
 .hero h1{
-  font-size:42px;
+  font-size:44px;
+  line-height:1.2;
 }
 
 .hero p{
@@ -69,6 +97,7 @@ nav img{
   color:#aaa;
 }
 
+/* BUTTON */
 .btn{
   display:inline-block;
   margin-top:25px;
@@ -77,12 +106,25 @@ nav img{
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
+  box-shadow:0 0 20px rgba(123,92,255,0.5);
 }
 
-/* SECTIONS */
+/* SECTION */
 .section{
   padding:100px 8%;
   text-align:center;
+}
+
+/* FADE ANIMATION (ONLY FOR LOWER SECTIONS) */
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* CARDS */
@@ -104,6 +146,7 @@ nav img{
 
 .card:hover{
   transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(123,92,255,0.2);
 }
 
 .price{
@@ -117,7 +160,7 @@ nav img{
   font-size:14px;
 }
 
-/* CONTACT FORM */
+/* CONTACT */
 form{
   max-width:500px;
   margin:40px auto 0;
@@ -143,18 +186,6 @@ button{
   cursor:pointer;
 }
 
-/* SCROLL ANIMATION */
-.fade{
-  opacity:0;
-  transform:translateY(30px);
-  transition:0.8s;
-}
-
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
 /* MOBILE CTA */
 .mobile-cta{
   position:fixed;
@@ -176,17 +207,26 @@ button{
 
 <body>
 
-<nav>
-  <img src="logo.png">
-</nav>
-
 <!-- HERO -->
-<section class="hero fade">
+<section class="hero">
+
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
   <div class="hero-content">
+
+    <div class="tagline">AFFORDABLE — YOUR WAY</div>
+
+    <img src="logo.png" class="logo">
+
     <h1>Websites That Make Your Business Look Like a Big Deal</h1>
+
     <p>Designed to attract customers, build trust, and grow your business.</p>
+
     <a href="sms:2397884380" class="btn">Message Me</a>
+
   </div>
+
 </section>
 
 <!-- PRICING -->
@@ -198,19 +238,19 @@ button{
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
-      <p>Perfect for small businesses that need a clean online presence fast.</p>
+      <p>Simple, clean website to get your business online fast.</p>
     </div>
 
     <div class="card" style="border:1px solid #7B5CFF;">
       <h3>Business Growth</h3>
       <div class="price">$250</div>
-      <p>Great for growing businesses looking to attract more local customers.</p>
+      <p>Designed to attract local customers and grow your presence.</p>
     </div>
 
     <div class="card">
       <h3>Premium</h3>
       <div class="price">$500</div>
-      <p>Best for established businesses ready to scale and automate bookings.</p>
+      <p>Advanced design and features to scale your business.</p>
     </div>
 
   </div>
