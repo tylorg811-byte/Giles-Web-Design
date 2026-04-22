@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Giles Web Design</title>
+<title>Giles Affordable Web Design</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   background:#0B0B0F;
   color:#fff;
+  font-family:'Inter',sans-serif;
   overflow-x:hidden;
 }
 
@@ -44,32 +45,32 @@ body{
   position:absolute;
   border-radius:50%;
   filter:blur(120px);
-  opacity:0.4;
-  animation:float 12s infinite alternate;
+  opacity:0.35;
+  animation:float 14s infinite alternate;
 }
 
 .orb1{
-  width:450px;height:450px;
+  width:420px;height:420px;
   background:#7B5CFF;
-  top:-150px;left:-150px;
+  top:-120px;left:-120px;
 }
 
 .orb2{
-  width:350px;height:350px;
+  width:320px;height:320px;
   background:#00C2FF;
-  bottom:-150px;right:-150px;
+  bottom:-120px;right:-120px;
 }
 
 @keyframes float{
   from{transform:translateY(0);}
-  to{transform:translateY(90px);}
+  to{transform:translateY(80px);}
 }
 
 /* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
-  max-width:800px;
+  max-width:760px;
   opacity:0;
   transform:translateY(30px);
   animation:fadeInUp 1s ease forwards;
@@ -84,24 +85,25 @@ body{
   font-size:12px;
   letter-spacing:3px;
   color:#aaa;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
-/* BIGGER LOGO */
+/* LOGO */
 .logo{
-  width:180px;
+  width:160px;
   margin-bottom:25px;
 }
 
-/* TITLE */
+/* HEADER FONT (UPGRADED) */
 .hero h1{
-  font-size:46px;
+  font-family:'Playfair Display', serif;
+  font-size:48px;
   line-height:1.2;
-  letter-spacing:-1px;
+  letter-spacing:-0.5px;
 }
 
 .hero p{
-  margin-top:18px;
+  margin-top:16px;
   color:#aaa;
   font-size:16px;
 }
@@ -109,23 +111,23 @@ body{
 /* BUTTON */
 .btn{
   display:inline-block;
-  margin-top:30px;
-  padding:15px 36px;
+  margin-top:28px;
+  padding:14px 34px;
   border-radius:40px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
-  box-shadow:0 0 25px rgba(123,92,255,0.5);
-  font-weight:600;
+  font-weight:500;
+  box-shadow:0 0 25px rgba(123,92,255,0.4);
 }
 
-/* SECTION */
+/* SECTIONS */
 .section{
-  padding:110px 8%;
+  padding:100px 8%;
   text-align:center;
 }
 
-/* SCROLL */
+/* FADE */
 .fade{
   opacity:0;
   transform:translateY(40px);
@@ -136,60 +138,55 @@ body{
   transform:translateY(0);
 }
 
-/* CARDS */
+/* PRICING */
 .cards{
   display:flex;
-  gap:30px;
+  gap:25px;
   justify-content:center;
   flex-wrap:wrap;
-  margin-top:50px;
+  margin-top:40px;
 }
 
 .card{
   background:rgba(255,255,255,0.03);
-  padding:35px;
-  border-radius:22px;
-  width:290px;
+  padding:30px;
+  border-radius:20px;
+  width:270px;
   transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 0 45px rgba(123,92,255,0.2);
+  transform:translateY(-10px);
+  box-shadow:0 0 40px rgba(123,92,255,0.2);
 }
 
 .price{
-  font-size:34px;
+  font-size:32px;
   color:#7B5CFF;
-  margin:20px 0;
-}
-
-.card p{
-  color:#aaa;
-  font-size:14px;
-  line-height:1.5;
+  margin:15px 0;
 }
 
 /* VIDEO */
 video{
   width:100%;
-  max-width:950px;
-  border-radius:20px;
+  max-width:900px;
+  border-radius:16px;
   margin-top:40px;
-  box-shadow:0 0 50px rgba(0,0,0,0.6);
+  box-shadow:0 0 40px rgba(0,0,0,0.6);
 }
 
 /* CASE STUDY */
 .case{
-  max-width:700px;
-  margin:40px auto 0;
+  max-width:650px;
+  margin:30px auto 0;
   color:#aaa;
   line-height:1.6;
+  font-size:15px;
 }
 
 /* CONTACT */
 form{
-  max-width:500px;
+  max-width:480px;
   margin:40px auto 0;
   display:flex;
   flex-direction:column;
@@ -199,7 +196,7 @@ form{
 input, textarea{
   padding:14px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
   background:#1a1a22;
   color:#fff;
 }
@@ -211,7 +208,6 @@ button{
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   cursor:pointer;
-  font-weight:600;
 }
 
 </style>
@@ -227,13 +223,13 @@ button{
 
   <div class="hero-content">
 
-    <div class="tagline">WEBSITES BUILT TO GET YOU CUSTOMERS</div>
+    <div class="tagline">AFFORDABLE — YOUR WAY</div>
 
     <img src="logo.png" class="logo">
 
     <h1>Websites That Make Your Business Look Like a Big Deal</h1>
 
-    <p>Designed to attract customers, build trust, and turn visitors into real clients.</p>
+    <p>Clean, professional websites designed to help you stand out and get more customers.</p>
 
     <a href="sms:2397884380" class="btn">Message Me</a>
 
@@ -250,19 +246,19 @@ button{
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
-      <p>Perfect for getting your business online quickly with a clean, professional look.</p>
+      <p>Simple website to get your business online fast.</p>
     </div>
 
     <div class="card" style="border:1px solid #7B5CFF;">
       <h3>Business Growth</h3>
       <div class="price">$250</div>
-      <p>Built to help you attract more customers and stand out locally.</p>
+      <p>Designed to attract local customers and build trust.</p>
     </div>
 
     <div class="card">
       <h3>Premium</h3>
       <div class="price">$500</div>
-      <p>High-end design and features to elevate your brand and scale your business.</p>
+      <p>High-end design focused on converting visitors into clients.</p>
     </div>
 
   </div>
@@ -281,12 +277,12 @@ button{
 
 <!-- CASE STUDY -->
 <section class="section fade">
-  <h2>Project Breakdown</h2>
+  <h2>Landscaping Website Project</h2>
 
   <div class="case">
-    Created a modern, mobile-first website focused on making the business look more professional and trustworthy online. 
-    The layout was designed to guide visitors toward taking action quickly, whether that’s calling, messaging, or booking a service. 
-    Clean visuals, fast loading speeds, and clear messaging were prioritized to help convert visitors into real customers.
+    Designed a clean, modern website for a landscaping business to make them look more professional and trustworthy online. 
+    Focused on showing their work clearly, making it easy for customers to contact them, and ensuring the site looks great on mobile. 
+    The goal was simple: turn visitors into real leads by making the business stand out from competitors.
   </div>
 
 </section>
