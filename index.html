@@ -36,12 +36,30 @@ nav{
 
 nav.scrolled{
   background:rgba(20,20,30,0.65);
-  backdrop-filter: blur(18px);
 }
 
 .brand{
   font-family:'Cormorant Garamond', serif;
   font-size:24px;
+}
+
+/* NAV LINKS RESTORED */
+.nav-links{
+  display:flex;
+  gap:10px;
+}
+
+.nav-links a{
+  color:#cfcfcf;
+  text-decoration:none;
+  font-size:13px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.04);
+}
+
+.nav-links a:hover{
+  background:rgba(123,92,255,0.25);
 }
 
 /* ================= HERO ================= */
@@ -90,63 +108,33 @@ nav.scrolled{
 .orb1{width:420px;height:420px;background:#7B5CFF;top:-120px;left:-120px;}
 .orb2{width:320px;height:320px;background:#00C2FF;bottom:-120px;right:-120px;}
 
-/* HERO CONTENT */
+/* HERO */
 .hero-content{
   position:relative;
   z-index:2;
   max-width:800px;
-
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:14px;
 }
 
-/* HERO ANIMATION (LOAD ONLY) */
-.hero-anim{
-  opacity:0;
-  transform:translateY(15px);
-  animation:fadeUp 1s ease forwards;
-}
+.logo{width:240px;}
 
-.h1{animation-delay:0.5s;}
-.p{animation-delay:0.7s;}
-.logo{animation-delay:0.35s;}
-.tag{animation-delay:0.2s;}
-.btns{animation-delay:0.9s;}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* TEXT */
 .tag{
   font-size:13px;
   letter-spacing:2px;
   color:#aaa;
 }
 
-.logo{
-  width:240px;
-}
-
 h1{
   font-size:44px;
   line-height:1.15;
-  max-width:750px;
 }
 
-p{
-  color:#aaa;
-  max-width:600px;
-}
+p{color:#aaa;}
 
-/* HERO BUTTONS FIXED */
-.hero-buttons{
-  display:flex;
-  gap:12px;
-}
-
+/* BUTTON STYLE (GLOBAL FIX) */
 .btn{
   display:inline-block;
   padding:14px 28px;
@@ -157,12 +145,13 @@ p{
   font-weight:500;
 }
 
-/* ================= SCROLL ANIMATION SYSTEM ================= */
+/* ================= SECTIONS ================= */
 .section{
   padding:100px 8%;
   text-align:center;
 }
 
+/* SCROLL FADE */
 .fade{
   opacity:0;
   transform:translateY(40px);
@@ -188,6 +177,7 @@ p{
   padding:30px;
   border-radius:20px;
   width:280px;
+  position:relative;
 }
 
 .price{
@@ -197,7 +187,6 @@ p{
   font-weight:600;
 }
 
-/* BADGE */
 .badge{
   position:absolute;
   top:-10px;
@@ -208,7 +197,7 @@ p{
   border-radius:999px;
 }
 
-/* CONTACT */
+/* ================= CONTACT ================= */
 form{
   max-width:520px;
   margin:40px auto 0;
@@ -225,7 +214,7 @@ input, textarea{
   color:#fff;
 }
 
-/* FOOTER */
+/* ================= FOOTER FIX ================= */
 .mobile-cta{
   position:fixed;
   bottom:0;
@@ -235,6 +224,17 @@ input, textarea{
   padding:15px;
   z-index:999;
 }
+
+/* FORCE BUTTON STYLE INSIDE FOOTER */
+.mobile-cta a{
+  display:inline-block;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:10px 20px;
+  border-radius:999px;
+  background:rgba(0,0,0,0.15);
+}
 </style>
 </head>
 
@@ -242,6 +242,12 @@ input, textarea{
 
 <nav id="nav">
   <div class="brand">Giles Web Design</div>
+
+  <!-- NAV RESTORED -->
+  <div class="nav-links">
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -252,24 +258,22 @@ input, textarea{
 
   <div class="hero-content">
 
-    <div class="tag hero-anim tag">AFFORDABLE — YOUR WAY</div>
+    <div class="tag">AFFORDABLE — YOUR WAY</div>
 
-    <img src="logo.png" class="logo hero-anim">
+    <img src="logo.png" class="logo">
 
-    <h1 class="hero-anim h1">Websites That Make Your Business Look Like a Big Deal</h1>
+    <h1>Websites That Make Your Business Look Like a Big Deal</h1>
 
-    <p class="hero-anim p">Designed to attract customers, build trust, and grow your business.</p>
+    <p>Designed to attract customers, build trust, and grow your business.</p>
 
-    <div class="hero-buttons hero-anim btns">
-      <a class="btn" href="sms:2397884380">Message Me</a>
-    </div>
+    <a class="btn" href="sms:2397884380">Message Me</a>
 
   </div>
 
 </section>
 
 <!-- PRICING -->
-<section class="section fade">
+<section class="section fade" id="pricing">
   <h2>Website Packages</h2>
 
   <div class="cards">
@@ -280,7 +284,7 @@ input, textarea{
       <p>Simple, clean website to get your business online fast.</p>
     </div>
 
-    <div class="card fade" style="border:1px solid #7B5CFF; position:relative;">
+    <div class="card fade" style="border:1px solid #7B5CFF;">
       <div class="badge">Most Popular</div>
       <h3>Business Growth</h3>
       <div class="price">$250</div>
@@ -297,10 +301,10 @@ input, textarea{
 </section>
 
 <!-- CONTACT -->
-<section class="section fade">
+<section class="section fade" id="contact">
   <h2>Contact Me</h2>
 
-  <form class="fade" action="https://formspree.io/f/yourFormID" method="POST">
+  <form action="https://formspree.io/f/yourFormID" method="POST">
     <input type="text" placeholder="Your Name" required>
     <input type="email" placeholder="Your Email" required>
     <input type="text" placeholder="Business Type">
@@ -310,23 +314,22 @@ input, textarea{
   </form>
 </section>
 
+<!-- FOOTER -->
 <div class="mobile-cta">
   <a href="sms:2397884380">Message Me Now</a>
 </div>
 
 <script>
-/* NAV */
 const nav=document.getElementById("nav");
 
 window.addEventListener("scroll",()=>{
   nav.classList.toggle("scrolled", window.scrollY>10);
 });
 
-/* SCROLL FADE (FIXED + RELIABLE) */
-const fadeEls=document.querySelectorAll(".fade");
+const fades=document.querySelectorAll(".fade");
 
 function runFade(){
-  fadeEls.forEach(el=>{
+  fades.forEach(el=>{
     const top=el.getBoundingClientRect().top;
     if(top < window.innerHeight - 100){
       el.classList.add("show");
