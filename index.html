@@ -17,6 +17,12 @@ body{
   overflow-x:hidden;
 }
 
+/* CONTAINER (keeps desktop clean) */
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+
 /* HERO */
 .hero{
   height:100vh;
@@ -39,7 +45,6 @@ body{
   background-size:40px 40px;
 }
 
-/* ORBS */
 .orb{
   position:absolute;
   border-radius:50%;
@@ -48,28 +53,18 @@ body{
   animation:float 14s infinite alternate;
 }
 
-.orb1{
-  width:420px;height:420px;
-  background:#7B5CFF;
-  top:-120px;left:-120px;
-}
-
-.orb2{
-  width:320px;height:320px;
-  background:#00C2FF;
-  bottom:-120px;right:-120px;
-}
+.orb1{width:420px;height:420px;background:#7B5CFF;top:-120px;left:-120px;}
+.orb2{width:320px;height:320px;background:#00C2FF;bottom:-120px;right:-120px;}
 
 @keyframes float{
   from{transform:translateY(0);}
   to{transform:translateY(80px);}
 }
 
-/* HERO CONTENT */
 .hero-content{
   position:relative;
   z-index:2;
-  max-width:760px;
+  max-width:700px;
   opacity:0;
   transform:translateY(30px);
   animation:fadeInUp 1s ease forwards;
@@ -83,29 +78,29 @@ body{
   font-size:12px;
   letter-spacing:3px;
   color:#aaa;
-  margin-bottom:18px;
+  margin-bottom:14px;
 }
 
 .logo{
-  width:180px;
-  margin-bottom:25px;
+  width:170px;
+  margin-bottom:20px;
 }
 
 .hero h1{
   font-family:'Playfair Display', serif;
-  font-size:52px;
-  line-height:1.15;
+  font-size:48px;
+  line-height:1.2;
 }
 
 .hero p{
-  margin-top:16px;
+  margin-top:14px;
   color:#aaa;
 }
 
 .btn{
   display:inline-block;
-  margin-top:28px;
-  padding:14px 34px;
+  margin-top:24px;
+  padding:14px 32px;
   border-radius:40px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
@@ -114,115 +109,109 @@ body{
 
 /* SECTION */
 .section{
-  padding:110px 8%;
-  text-align:center;
+  padding:70px 20px;
 }
 
-/* FADE */
+.section h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+/* ANIMATION (UPGRADED) */
 .fade{
   opacity:0;
-  transform:translateY(40px);
-  transition:0.8s ease;
+  transform:translateY(60px) scale(0.97);
+  transition:all 0.6s cubic-bezier(.22,1,.36,1);
 }
 .fade.show{
   opacity:1;
-  transform:translateY(0);
+  transform:translateY(0) scale(1);
 }
 
 /* PRICING */
 .cards{
   display:flex;
-  gap:25px;
+  gap:20px;
   justify-content:center;
   flex-wrap:wrap;
-  margin-top:40px;
 }
 
 .card{
   background:rgba(255,255,255,0.03);
-  padding:30px;
-  border-radius:20px;
-  width:270px;
-  transition:0.3s;
+  padding:25px;
+  border-radius:18px;
+  width:260px;
+  transition:all 0.5s;
 }
 
 .card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 40px rgba(123,92,255,0.2);
+  transform:translateY(-8px);
 }
 
+.card:nth-child(1){transition-delay:.1s;}
+.card:nth-child(2){transition-delay:.2s;}
+.card:nth-child(3){transition-delay:.3s;}
+
 .price{
-  font-size:32px;
+  font-size:30px;
   color:#7B5CFF;
-  margin:15px 0;
+  margin:10px 0;
 }
 
 /* PORTFOLIO */
-.portfolio{
-  max-width:1000px;
-  margin:50px auto 0;
-  text-align:left;
-}
-
 .project{
   background:rgba(255,255,255,0.03);
-  padding:25px;
-  border-radius:20px;
+  padding:20px;
+  border-radius:18px;
+  max-width:800px;
+  margin:30px auto 0;
 }
 
 .project p{
   color:#aaa;
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 
 video{
   width:100%;
-  border-radius:14px;
-  box-shadow:0 0 30px rgba(0,0,0,0.5);
+  border-radius:12px;
 }
 
 /* TESTIMONIAL */
 .testimonial{
-  max-width:600px;
-  margin:40px auto;
-  font-style:italic;
+  text-align:center;
+  max-width:500px;
+  margin:30px auto;
   color:#ccc;
-}
-
-/* CTA */
-.cta{
-  margin-top:20px;
+  font-style:italic;
 }
 
 /* CONTACT */
-.contact-wrapper{
-  max-width:700px;
-  margin:50px auto 0;
-}
-
 .contact-box{
+  max-width:600px;
+  margin:30px auto;
   background:rgba(255,255,255,0.04);
-  border-radius:20px;
-  padding:35px;
-  backdrop-filter:blur(12px);
-  box-shadow:0 0 40px rgba(0,0,0,0.6);
+  padding:25px;
+  border-radius:18px;
+  backdrop-filter:blur(10px);
 }
 
 .contact-box p{
   color:#aaa;
-  margin-bottom:25px;
+  margin-bottom:20px;
+  text-align:center;
 }
 
 form{
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:12px;
 }
 
 input, textarea{
-  padding:14px;
+  padding:12px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
   background:#111118;
   color:#fff;
 }
@@ -232,7 +221,7 @@ input:focus, textarea:focus{
 }
 
 button{
-  padding:15px;
+  padding:14px;
   border:none;
   border-radius:30px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
@@ -242,8 +231,15 @@ button{
 
 .success{
   display:none;
-  margin-top:15px;
+  margin-top:10px;
   color:#7BFFB2;
+  text-align:center;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero h1{font-size:36px;}
+  .logo{width:140px;}
 }
 </style>
 </head>
@@ -259,98 +255,96 @@ button{
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
     <img src="logo.png" class="logo">
     <h1>Look Professional.<br>Get More Customers.</h1>
-    <p>Affordable websites designed to make your business stand out and bring in more clients.</p>
+    <p>Affordable websites that make your business stand out.</p>
     <a href="sms:2397884380" class="btn">Message Me</a>
   </div>
 </section>
 
 <!-- PRICING -->
 <section class="section fade">
-  <h2>Website Packages</h2>
+  <div class="container">
+    <h2>Website Packages</h2>
 
-  <div class="cards">
-    <div class="card">
-      <h3>Starter</h3>
-      <div class="price">$100</div>
-      <p>Clean site to get online fast.</p>
-    </div>
+    <div class="cards">
+      <div class="card fade">
+        <h3>Starter</h3>
+        <div class="price">$100</div>
+        <p>Simple site to get online fast.</p>
+      </div>
 
-    <div class="card" style="border:1px solid #7B5CFF;">
-      <h3>Business Growth</h3>
-      <div class="price">$250</div>
-      <p>Designed to attract customers.</p>
-    </div>
+      <div class="card fade">
+        <h3>Business</h3>
+        <div class="price">$250</div>
+        <p>Built to attract customers.</p>
+      </div>
 
-    <div class="card">
-      <h3>Premium</h3>
-      <div class="price">$500</div>
-      <p>High-end conversion focused design.</p>
+      <div class="card fade">
+        <h3>Premium</h3>
+        <div class="price">$500</div>
+        <p>High-end conversion design.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PORTFOLIO -->
 <section class="section fade">
-  <h2>Featured Project</h2>
+  <div class="container">
+    <h2>Featured Project</h2>
 
-  <div class="portfolio">
-    <div class="project">
-      <h3>Landscaping Business Website</h3>
-      <p>Built to make the company look professional and drive more customer inquiries.</p>
+    <div class="project fade">
+      <h3>Landscaping Website</h3>
+      <p>Modern site designed to make the business look more professional and drive more calls.</p>
 
       <video autoplay muted loop playsinline>
         <source src="demo.mp4" type="video/mp4">
       </video>
     </div>
-  </div>
 
-  <div class="testimonial">
-    “The website made my business look 10x more professional and I started getting more calls.”
+    <div class="testimonial fade">
+      “Made my business look way more professional and I started getting more calls.”
+    </div>
   </div>
-
-  <div class="cta">
-    <a href="sms:2397884380" class="btn">Get Something Like This</a>
-  </div>
-
 </section>
 
 <!-- CONTACT -->
 <section class="section fade">
-  <div class="contact-wrapper">
-    <div class="contact-box">
+  <div class="container">
+    <div class="contact-box fade">
       <h2>Let’s Build Your Website</h2>
       <p>Tell me about your business and I’ll help you get more customers.</p>
 
       <form id="form" action="YOUR_FORMSPREE_URL" method="POST">
-        <input type="text" name="name" required placeholder="Your Name">
-        <input type="email" name="email" required placeholder="Your Email">
-        <textarea name="message" required placeholder="Tell me about your business..."></textarea>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Tell me about your business..." required></textarea>
         <button type="submit">Start My Website</button>
       </form>
 
-      <div class="success" id="success">Message sent! I’ll get back to you soon.</div>
+      <div class="success" id="success">Message sent! I’ll get back to you.</div>
     </div>
   </div>
 </section>
 
 <script>
-const observer = new IntersectionObserver(entries=>{
+const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
       entry.target.classList.add('show');
     }
   });
-});
+},{threshold:0.1});
+
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 
-const form = document.getElementById('form');
-const success = document.getElementById('success');
+const form=document.getElementById('form');
+const success=document.getElementById('success');
 
-form.addEventListener('submit', async function(e){
+form.addEventListener('submit',async e=>{
   e.preventDefault();
-  const data = new FormData(form);
+  const data=new FormData(form);
 
-  const res = await fetch(form.action,{
+  const res=await fetch(form.action,{
     method:"POST",
     body:data,
     headers:{'Accept':'application/json'}
