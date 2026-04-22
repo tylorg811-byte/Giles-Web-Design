@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 
 body{
@@ -23,12 +22,17 @@ nav{
   width:100%;
   top:0;
   display:flex;
-  justify-content:space-between;
+  justify-content:center;
   align-items:center;
-  padding:20px 8%;
-  background:rgba(15,15,20,0.6);
+  padding:15px;
+  background:rgba(15,15,20,0.7);
   backdrop-filter:blur(12px);
   z-index:1000;
+}
+
+nav img{
+  height:60px; /* BIGGER LOGO */
+  filter:brightness(1.1) contrast(1.1); /* removes dull tint look */
 }
 
 /* HERO */
@@ -42,7 +46,6 @@ nav{
   overflow:hidden;
 }
 
-/* GRID OVERLAY */
 .hero::before{
   content:"";
   position:absolute;
@@ -51,113 +54,106 @@ nav{
   background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
   background-size:40px 40px;
-  z-index:0;
 }
 
-/* GLOW ORBS */
-.orb{
-  position:absolute;
-  border-radius:50%;
-  filter:blur(80px);
-  opacity:0.5;
-  animation:float 12s infinite alternate;
-}
-
-.orb1{
-  width:400px;height:400px;
-  background:#7B5CFF;
-  top:-100px;left:-100px;
-}
-
-.orb2{
-  width:300px;height:300px;
-  background:#00C2FF;
-  bottom:-100px;right:-100px;
-  animation-delay:3s;
-}
-
-@keyframes float{
-  from{transform:translateY(0px);}
-  to{transform:translateY(60px);}
-}
-
-/* HERO CONTENT */
 .hero-content{
-  position:relative;
   z-index:2;
-  animation:fadeUp 1s ease forwards;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
 }
 
 .hero h1{
-  font-size:52px;
-  max-width:800px;
-  margin:auto;
+  font-size:42px;
 }
 
 .hero p{
-  margin-top:20px;
+  margin-top:15px;
   color:#aaa;
-  max-width:600px;
-  margin-left:auto;
-  margin-right:auto;
 }
 
 .btn{
   display:inline-block;
-  margin-top:30px;
+  margin-top:25px;
   padding:14px 32px;
   border-radius:40px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
-  transition:0.3s;
-  box-shadow:0 0 20px rgba(123,92,255,0.5);
-}
-
-.btn:hover{
-  transform:translateY(-3px) scale(1.05);
-  box-shadow:0 0 40px rgba(123,92,255,0.8);
-}
-
-/* LIGHT SWEEP */
-.light{
-  position:absolute;
-  width:200%;
-  height:200%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.08),transparent);
-  transform:rotate(25deg);
-  animation:sweep 6s infinite;
-}
-
-@keyframes sweep{
-  from{transform:translateX(-100%) rotate(25deg);}
-  to{transform:translateX(100%) rotate(25deg);}
 }
 
 /* SECTIONS */
-.section{padding:120px 8%;text-align:center;}
-.cards{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:50px;}
+.section{
+  padding:100px 8%;
+  text-align:center;
+}
+
+/* CARDS */
+.cards{
+  display:flex;
+  gap:25px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
 
 .card{
   background:rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.08);
-  padding:35px;
+  padding:30px;
   border-radius:20px;
   width:280px;
-  transition:0.4s;
+  transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 0 40px rgba(123,92,255,0.25);
+  transform:translateY(-10px);
 }
 
-.price{font-size:36px;margin:20px 0;color:#7B5CFF;}
+.price{
+  font-size:30px;
+  color:#7B5CFF;
+  margin:15px 0;
+}
+
+.card p{
+  color:#aaa;
+  font-size:14px;
+}
+
+/* CONTACT FORM */
+form{
+  max-width:500px;
+  margin:40px auto 0;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+input, textarea{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#1a1a22;
+  color:#fff;
+}
+
+button{
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
+  color:#fff;
+  cursor:pointer;
+}
+
+/* SCROLL ANIMATION */
+.fade{
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.8s;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
 /* MOBILE CTA */
 .mobile-cta{
@@ -169,7 +165,11 @@ nav{
   padding:15px;
 }
 
-.mobile-cta a{color:#fff;text-decoration:none;font-weight:600;}
+.mobile-cta a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+}
 
 </style>
 </head>
@@ -177,15 +177,11 @@ nav{
 <body>
 
 <nav>
-  <img src="logo.png" height="45">
+  <img src="logo.png">
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="orb orb1"></div>
-  <div class="orb orb2"></div>
-  <div class="light"></div>
-
+<section class="hero fade">
   <div class="hero-content">
     <h1>Websites That Make Your Business Look Like a Big Deal</h1>
     <p>Designed to attract customers, build trust, and grow your business.</p>
@@ -194,34 +190,61 @@ nav{
 </section>
 
 <!-- PRICING -->
-<section class="section">
+<section class="section fade">
   <h2>Website Packages</h2>
 
   <div class="cards">
+
     <div class="card">
       <h3>Starter</h3>
       <div class="price">$100</div>
+      <p>Perfect for small businesses that need a clean online presence fast.</p>
     </div>
 
     <div class="card" style="border:1px solid #7B5CFF;">
       <h3>Business Growth</h3>
       <div class="price">$250</div>
+      <p>Great for growing businesses looking to attract more local customers.</p>
     </div>
 
     <div class="card">
       <h3>Premium</h3>
       <div class="price">$500</div>
+      <p>Best for established businesses ready to scale and automate bookings.</p>
     </div>
+
   </div>
 </section>
 
-<footer style="text-align:center;padding:30px;color:#777;">
-(239) 788-4380 | tylorg811@gmail.com
-</footer>
+<!-- CONTACT -->
+<section class="section fade">
+  <h2>Contact Me</h2>
+
+  <form action="mailto:tylorg811@gmail.com" method="POST" enctype="text/plain">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+
+</section>
 
 <div class="mobile-cta">
   <a href="sms:2397884380">Message Me Now</a>
 </div>
+
+<script>
+const fades=document.querySelectorAll('.fade');
+
+window.addEventListener('scroll',()=>{
+  fades.forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      el.classList.add('show');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
