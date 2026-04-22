@@ -43,8 +43,13 @@ body{
   position:absolute;
   border-radius:50%;
   filter:blur(100px);
+  opacity:0;
+  animation:float 14s ease-in-out infinite alternate;
+  transition:opacity 1s ease;
+}
+
+.hero.loaded .orb{
   opacity:0.4;
-  animation:float 12s infinite alternate;
 }
 
 .orb1{
@@ -69,6 +74,15 @@ body{
   position:relative;
   z-index:2;
   max-width:800px;
+
+  opacity:0;
+  transform:translateY(25px);
+  transition:1s ease;
+}
+
+.hero.loaded .hero-content{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* TAGLINE */
@@ -77,6 +91,11 @@ body{
   letter-spacing:2px;
   color:#aaa;
   margin-bottom:15px;
+
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.2s;
 }
 
 /* LOGO */
@@ -84,17 +103,32 @@ body{
   width:120px;
   margin-bottom:20px;
   filter:brightness(1.1);
+
+  opacity:0;
+  transform:scale(0.9);
+  animation:logoIn 1s ease forwards;
+  animation-delay:0.4s;
 }
 
 /* TITLE */
 .hero h1{
   font-size:44px;
   line-height:1.2;
+
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.6s;
 }
 
 .hero p{
   margin-top:15px;
   color:#aaa;
+
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeUp 1s ease forwards;
+  animation-delay:0.8s;
 }
 
 /* BUTTON */
@@ -107,6 +141,26 @@ body{
   color:#fff;
   text-decoration:none;
   box-shadow:0 0 20px rgba(123,92,255,0.5);
+
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeUp 1s ease forwards;
+  animation-delay:1s;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes logoIn{
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
 }
 
 /* SECTION */
@@ -115,7 +169,7 @@ body{
   text-align:center;
 }
 
-/* FADE ANIMATION (ONLY FOR LOWER SECTIONS) */
+/* FADE SCROLL ANIMATION */
 .fade{
   opacity:0;
   transform:translateY(40px);
@@ -201,7 +255,6 @@ button{
   text-decoration:none;
   font-weight:600;
 }
-
 </style>
 </head>
 
@@ -266,7 +319,6 @@ button{
     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
     <button type="submit">Send Message</button>
   </form>
-
 </section>
 
 <div class="mobile-cta">
@@ -283,6 +335,11 @@ window.addEventListener('scroll',()=>{
       el.classList.add('show');
     }
   });
+});
+
+/* HERO LOAD ANIMATION TRIGGER */
+window.addEventListener('load',()=>{
+  document.querySelector('.hero').classList.add('loaded');
 });
 </script>
 
