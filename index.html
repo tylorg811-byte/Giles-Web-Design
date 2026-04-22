@@ -9,7 +9,29 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+body{
+  background:#0B0B0F;
+  color:#fff;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  opacity:0;
+  animation:pageFade 1s ease forwards;
+}
+
+@keyframes pageFade{
+  to{opacity:1;}
+}
+
+/* GRAIN OVERLAY */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity:0.05;
+  pointer-events:none;
+}
 
 /* CURSOR GLOW */
 .cursor-glow{
@@ -42,7 +64,6 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
     radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
     radial-gradient(circle at 80% 70%, #00C2FF, transparent 40%);
   opacity:.25;
-  z-index:1;
 }
 
 .hero-content{
@@ -64,12 +85,13 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
 .hero h1{
   font-family:'Playfair Display', serif;
   font-size:40px;
-  line-height:1.2;
 }
 
 .hero p{margin-top:10px;color:#aaa;}
 
+/* BUTTON */
 .btn{
+  position:relative;
   display:inline-block;
   margin-top:25px;
   padding:14px 30px;
@@ -77,11 +99,23 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
-  transition:.3s;
+  overflow:hidden;
 }
-.btn:hover{transform:scale(1.05);}
 
-/* SECTIONS */
+.btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent);
+  transition:.6s;
+}
+
+.btn:hover::after{left:100%;}
+
+/* SECTION */
 .section{padding:60px 20px;text-align:center;}
 
 /* FADE */
@@ -112,13 +146,28 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   transition:.2s;
   transform-style:preserve-3d;
 }
-.card:hover{transform:translateY(-6px);}
 
+/* FEATURED BORDER */
 .featured{
-  transform:scale(1.08);
-  border:1px solid #7B5CFF;
-  box-shadow:0 0 30px rgba(123,92,255,.4);
   position:relative;
+  transform:scale(1.08);
+}
+
+.featured::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:20px;
+  background:linear-gradient(120deg,#7B5CFF,#00C2FF,#7B5CFF);
+  background-size:300% 300%;
+  animation:borderMove 6s linear infinite;
+  z-index:-1;
+}
+
+@keyframes borderMove{
+  0%{background-position:0%;}
+  50%{background-position:100%;}
+  100%{background-position:0%;}
 }
 
 .badge{
@@ -135,52 +184,18 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
 .price{font-size:34px;margin:10px 0;color:#7B5CFF;}
 
 /* PROJECT */
-.project{
-  max-width:900px;
-  margin:30px auto 0;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.project video{width:100%;display:block;}
-
-.project-info{
-  padding:20px;
-  text-align:left;
-}
-
-.project-tag{
-  font-size:12px;
-  color:#7B5CFF;
-  margin-bottom:10px;
-  display:inline-block;
-}
+.project{max-width:900px;margin:30px auto;border-radius:20px;overflow:hidden;}
+.project video{width:100%;}
+.project-info{padding:20px;text-align:left;}
+.project-tag{font-size:12px;color:#7B5CFF;margin-bottom:10px;display:block;}
 
 /* TESTIMONIALS */
-.testimonials{
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
-  justify-content:center;
-  margin-top:25px;
-}
-
-.testimonial{
-  max-width:260px;
-  padding:18px;
-  border-radius:14px;
-  text-align:left;
-  color:#ddd;
-}
+.testimonials{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;margin-top:25px;}
+.testimonial{max-width:260px;padding:18px;border-radius:14px;text-align:left;color:#ddd;}
+.testimonial strong{display:block;margin-top:10px;font-size:13px;}
 
 /* CONTACT */
-.contact-box{
-  max-width:500px;
-  margin:20px auto;
-  padding:30px;
-  border-radius:20px;
-}
-
+.contact-box{max-width:500px;margin:auto;padding:30px;border-radius:20px;}
 input,textarea{
   width:100%;
   padding:14px;
@@ -190,7 +205,6 @@ input,textarea{
   background:#111118;
   color:#fff;
 }
-
 button{
   width:100%;
   padding:14px;
@@ -206,7 +220,7 @@ button{
 
 <body>
 
-<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-glow" id="glow"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -217,7 +231,7 @@ button{
     <img src="logo.png" class="logo">
     <h1>Look Professional.<br>Get More Customers.</h1>
     <p>Affordable websites that help your business stand out.</p>
-    <a href="sms:2397884380" class="btn">Message Me</a>
+    <a href="#" class="btn">Message Me</a>
   </div>
 </section>
 
@@ -235,7 +249,7 @@ button{
       <div class="badge">Most Popular</div>
       <h3>Business Growth</h3>
       <div class="price">$250</div>
-      <p>Best option to attract customers and look professional.</p>
+      <p>Best option to attract customers.</p>
     </div>
 
     <div class="card glass tilt">
@@ -250,7 +264,7 @@ button{
 <section class="section fade">
   <h2>About Me</h2>
   <div class="glass" style="max-width:700px;margin:auto;padding:25px;text-align:left;">
-    I’ve been designing websites since 2015, helping businesses look more professional and get more customers.
+    Designing websites since 2015. Focused on clean, modern designs that actually convert.
   </div>
 </section>
 
@@ -266,14 +280,7 @@ button{
     <div class="project-info">
       <span class="project-tag">Landscaping Business</span>
       <h3>Modern Local Service Website</h3>
-      <p>Built to increase calls and make the business look professional online.</p>
-    </div>
-  </div>
-
-  <div class="testimonials">
-    <div class="testimonial glass">
-      “Customers actually bring up my site now.”
-      <strong>– Mike R.</strong>
+      <p>Built to increase calls and make the business look professional.</p>
     </div>
   </div>
 </section>
@@ -289,7 +296,6 @@ button{
       <textarea name="message" placeholder="Tell me about your business..." required></textarea>
       <button type="submit">Start My Website</button>
     </form>
-
     <div class="success" id="success">Message sent!</div>
   </div>
 </section>
@@ -297,7 +303,6 @@ button{
 <!-- TESTIMONIALS -->
 <section class="section fade">
   <h2>What Clients Say</h2>
-
   <div class="testimonials">
     <div class="testimonial glass">“Super smooth process.”<strong>– James T.</strong></div>
     <div class="testimonial glass">“Looks high-end.”<strong>– Sarah L.</strong></div>
@@ -306,43 +311,40 @@ button{
 </section>
 
 <script>
-/* SCROLL FADE */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add('show');
-  });
+/* FADE */
+const observer=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')});
 });
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 
 /* PARALLAX */
 window.addEventListener('scroll',()=>{
-  let y=window.scrollY;
+  let y=scrollY;
   heroBg.style.transform=`translateY(${y*0.2}px)`;
   heroContent.style.transform=`translateY(${y*0.1}px)`;
 });
 
-/* CURSOR GLOW */
-const glow=document.getElementById('cursorGlow');
+/* CURSOR */
 document.addEventListener('mousemove',e=>{
   glow.style.left=e.clientX+'px';
   glow.style.top=e.clientY+'px';
 });
 
-/* CARD TILT */
+/* TILT */
 document.querySelectorAll('.tilt').forEach(card=>{
   card.addEventListener('mousemove',e=>{
-    let rect=card.getBoundingClientRect();
-    let x=e.clientX-rect.left;
-    let y=e.clientY-rect.top;
+    let r=card.getBoundingClientRect();
+    let x=e.clientX-r.left;
+    let y=e.clientY-r.top;
 
-    let rotateX=-(y/rect.height - .5)*10;
-    let rotateY=(x/rect.width - .5)*10;
+    let rx=-(y/r.height-.5)*8;
+    let ry=(x/r.width-.5)*8;
 
-    card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    card.style.transform=`translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
   });
 
   card.addEventListener('mouseleave',()=>{
-    card.style.transform='rotateX(0) rotateY(0)';
+    card.style.transform='translateY(0)';
   });
 });
 
