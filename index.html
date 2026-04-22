@@ -22,34 +22,22 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   overflow:hidden;
 }
 
-.hero::before{
-  content:"";
+.hero-bg{
   position:absolute;
   width:200%;
   height:200%;
   background:
     radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
     radial-gradient(circle at 80% 70%, #00C2FF, transparent 40%);
-  animation:bgMove 12s linear infinite;
   opacity:.25;
-}
-
-@keyframes bgMove{
-  0%{transform:translate(0,0);}
-  50%{transform:translate(-8%,-10%);}
-  100%{transform:translate(0,0);}
+  z-index:1;
 }
 
 .hero-content{
   position:relative;
   z-index:2;
   max-width:650px;
-  animation:fadeUp 1s ease forwards;
-}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px);}
-  to{opacity:1;transform:translateY(0);}
+  transition:transform .2s ease-out;
 }
 
 .tagline{font-size:11px;letter-spacing:3px;color:#aaa;margin-bottom:6px;}
@@ -71,22 +59,20 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
-  transition:.3s;
 }
-.btn:hover{transform:scale(1.05);}
 
-/* SECTIONS */
+/* SECTION */
 .section{padding:60px 20px;text-align:center;}
 
-/* ANIMATIONS */
+/* FADE */
 .fade{
   opacity:0;
-  transform:translateY(50px) scale(.97);
-  transition:.6s cubic-bezier(.22,1,.36,1);
+  transform:translateY(50px);
+  transition:.6s ease;
 }
 .fade.show{
   opacity:1;
-  transform:translateY(0) scale(1);
+  transform:translateY(0);
 }
 
 /* GLASS */
@@ -97,13 +83,13 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
 }
 
 /* PRICING */
-.cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:20px;}
+.cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
 
 .card{
   padding:26px;
   border-radius:18px;
   width:260px;
-  transition:.4s;
+  transition:.3s;
 }
 .card:hover{transform:translateY(-6px);}
 
@@ -127,7 +113,18 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
 
 .price{font-size:34px;margin:10px 0;color:#7B5CFF;}
 
-/* PROJECT SECTION (UPGRADED) */
+/* ABOUT */
+.about{
+  max-width:700px;
+  margin:0 auto;
+  padding:25px;
+  border-radius:20px;
+  text-align:left;
+  line-height:1.6;
+  color:#ccc;
+}
+
+/* PROJECT */
 .project{
   max-width:900px;
   margin:30px auto 0;
@@ -135,24 +132,18 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   overflow:hidden;
 }
 
-.project video{
-  width:100%;
-  display:block;
-}
+.project video{width:100%;display:block;}
 
 .project-info{
   padding:20px;
   text-align:left;
 }
 
-.project-info h3{margin-bottom:10px;}
-.project-info p{color:#bbb;font-size:14px;line-height:1.6;}
-
 .project-tag{
-  display:inline-block;
-  margin-bottom:10px;
   font-size:12px;
   color:#7B5CFF;
+  margin-bottom:10px;
+  display:inline-block;
 }
 
 /* TESTIMONIALS */
@@ -170,16 +161,12 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   border-radius:14px;
   text-align:left;
   color:#ddd;
-  font-size:14px;
-  transition:.3s;
 }
-.testimonial:hover{transform:translateY(-5px);}
 
 .testimonial strong{
   display:block;
   margin-top:10px;
   font-size:13px;
-  color:#fff;
 }
 
 /* CONTACT */
@@ -210,12 +197,6 @@ button{
 }
 
 .success{display:none;margin-top:10px;color:#7BFFB2;}
-
-/* MOBILE */
-@media(max-width:768px){
-  .hero h1{font-size:30px;}
-  .featured{transform:scale(1);}
-}
 </style>
 </head>
 
@@ -223,7 +204,9 @@ button{
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
+  <div class="hero-bg" id="heroBg"></div>
+
+  <div class="hero-content" id="heroContent">
     <div class="tagline">AFFORDABLE — YOUR WAY</div>
     <img src="logo.png" class="logo">
     <h1>Look Professional.<br>Get More Customers.</h1>
@@ -235,26 +218,38 @@ button{
 <!-- PRICING -->
 <section class="section fade">
   <h2>Website Packages</h2>
-
   <div class="cards">
-    <div class="card glass fade">
+
+    <div class="card glass">
       <h3>Starter</h3>
       <div class="price">$100</div>
       <p>Simple site to get online fast.</p>
     </div>
 
-    <div class="card glass featured fade">
+    <div class="card glass featured">
       <div class="badge">Most Popular</div>
       <h3>Business Growth</h3>
       <div class="price">$250</div>
       <p>Best option to attract customers and look professional.</p>
     </div>
 
-    <div class="card glass fade">
+    <div class="card glass">
       <h3>Premium</h3>
       <div class="price">$500</div>
       <p>High-end conversion design.</p>
     </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section fade">
+  <h2>About Me</h2>
+
+  <div class="about glass">
+    I’ve been designing websites since 2015, helping businesses look more professional and bring in more customers online.  
+    <br><br>
+    My focus is simple — create clean, modern websites that actually convert, without overcharging.
   </div>
 </section>
 
@@ -262,7 +257,7 @@ button{
 <section class="section fade">
   <h2>Recent Project</h2>
 
-  <div class="project glass fade">
+  <div class="project glass">
     <video autoplay muted loop playsinline>
       <source src="demo.mp4" type="video/mp4">
     </video>
@@ -271,16 +266,9 @@ button{
       <span class="project-tag">Landscaping Business</span>
       <h3>Modern Local Service Website</h3>
       <p>
-        Designed to make the business look professional and increase inbound calls.
-        Focused on mobile users, clear service sections, and fast contact options.
+        Built to increase calls and make the business look professional online.  
+        Focused on mobile users, clear services, and easy contact.
       </p>
-    </div>
-  </div>
-
-  <div class="testimonials">
-    <div class="testimonial glass fade">
-      “Way better than what I had before. Customers actually mention my website now.”
-      <strong>– Mike R., Landscaping Owner</strong>
     </div>
   </div>
 </section>
@@ -289,7 +277,7 @@ button{
 <section class="section fade">
   <h2>Let’s Build Your Website</h2>
 
-  <div class="contact-box glass fade">
+  <div class="contact-box glass">
     <form id="form" action="YOUR_FORMSPREE_URL" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
@@ -306,17 +294,17 @@ button{
   <h2>What Clients Say</h2>
 
   <div class="testimonials">
-    <div class="testimonial glass fade">
+    <div class="testimonial glass">
       “Super smooth process and the site came out clean.”
       <strong>– James T.</strong>
     </div>
 
-    <div class="testimonial glass fade">
+    <div class="testimonial glass">
       “Affordable but still looks high-end. Exactly what I needed.”
       <strong>– Sarah L.</strong>
     </div>
 
-    <div class="testimonial glass fade">
+    <div class="testimonial glass">
       “My business finally looks legit online.”
       <strong>– David M.</strong>
     </div>
@@ -324,6 +312,7 @@ button{
 </section>
 
 <script>
+/* SCROLL ANIMATION */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
@@ -334,6 +323,14 @@ const observer=new IntersectionObserver(entries=>{
 
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 
+/* HERO PARALLAX */
+window.addEventListener('scroll',()=>{
+  let scrollY=window.scrollY;
+  document.getElementById('heroBg').style.transform=`translateY(${scrollY * 0.2}px)`;
+  document.getElementById('heroContent').style.transform=`translateY(${scrollY * 0.1}px)`;
+});
+
+/* FORM */
 const form=document.getElementById('form');
 const success=document.getElementById('success');
 
