@@ -9,12 +9,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-  background:#0B0B0F;
-  color:#fff;
-  font-family:'Inter',sans-serif;
-}
+body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
 
 /* HERO */
 .hero{
@@ -25,7 +20,6 @@ body{
   text-align:center;
   position:relative;
   overflow:hidden;
-  padding:40px 20px;
 }
 
 .hero::before{
@@ -36,13 +30,13 @@ body{
   background:
     radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
     radial-gradient(circle at 80% 70%, #00C2FF, transparent 40%);
-  animation:moveBg 10s linear infinite;
-  opacity:0.25;
+  animation:bgMove 12s linear infinite;
+  opacity:.25;
 }
 
-@keyframes moveBg{
+@keyframes bgMove{
   0%{transform:translate(0,0);}
-  50%{transform:translate(-8%, -10%);}
+  50%{transform:translate(-8%,-10%);}
   100%{transform:translate(0,0);}
 }
 
@@ -50,20 +44,16 @@ body{
   position:relative;
   z-index:2;
   max-width:650px;
+  animation:fadeUp 1s ease forwards;
 }
 
-.tagline{
-  font-size:11px;
-  letter-spacing:3px;
-  color:#aaa;
-  margin-bottom:6px;
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
-.logo{
-  width:160px;
-  margin:10px auto 15px;
-  display:block;
-}
+.tagline{font-size:11px;letter-spacing:3px;color:#aaa;margin-bottom:6px;}
+.logo{width:160px;margin:10px auto 15px;display:block;}
 
 .hero h1{
   font-family:'Playfair Display', serif;
@@ -71,10 +61,7 @@ body{
   line-height:1.2;
 }
 
-.hero p{
-  margin-top:10px;
-  color:#aaa;
-}
+.hero p{margin-top:10px;color:#aaa;}
 
 .btn{
   display:inline-block;
@@ -84,12 +71,22 @@ body{
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
+  transition:.3s;
 }
+.btn:hover{transform:scale(1.05);}
 
-/* SECTION (TIGHTER) */
-.section{
-  padding:55px 20px;
-  text-align:center;
+/* SECTIONS */
+.section{padding:60px 20px;text-align:center;}
+
+/* ANIMATIONS */
+.fade{
+  opacity:0;
+  transform:translateY(50px) scale(.97);
+  transition:.6s cubic-bezier(.22,1,.36,1);
+}
+.fade.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
 /* GLASS */
@@ -100,29 +97,20 @@ body{
 }
 
 /* PRICING */
-.cards{
-  display:flex;
-  gap:18px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
+.cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:20px;}
 
 .card{
-  padding:28px;
-  border-radius:20px;
+  padding:26px;
+  border-radius:18px;
   width:260px;
-  transition:0.3s;
+  transition:.4s;
 }
+.card:hover{transform:translateY(-6px);}
 
-.card:hover{
-  transform:translateY(-6px);
-}
-
-/* FEATURED */
 .featured{
   transform:scale(1.08);
   border:1px solid #7B5CFF;
-  box-shadow:0 0 30px rgba(123,92,255,0.4);
+  box-shadow:0 0 30px rgba(123,92,255,.4);
   position:relative;
 }
 
@@ -137,36 +125,43 @@ body{
   font-size:12px;
 }
 
-.price{
-  font-size:34px;
-  margin:12px 0;
+.price{font-size:34px;margin:10px 0;color:#7B5CFF;}
+
+/* PROJECT SECTION (UPGRADED) */
+.project{
+  max-width:900px;
+  margin:30px auto 0;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.project video{
+  width:100%;
+  display:block;
+}
+
+.project-info{
+  padding:20px;
+  text-align:left;
+}
+
+.project-info h3{margin-bottom:10px;}
+.project-info p{color:#bbb;font-size:14px;line-height:1.6;}
+
+.project-tag{
+  display:inline-block;
+  margin-bottom:10px;
+  font-size:12px;
   color:#7B5CFF;
 }
 
-/* PORTFOLIO */
-video{
-  width:100%;
-  max-width:750px;
-  border-radius:14px;
-  margin-top:15px;
-}
-
-.project-details{
-  max-width:650px;
-  margin:20px auto;
-  text-align:left;
-  color:#ccc;
-  font-size:14px;
-  line-height:1.6;
-}
-
-/* TESTIMONIAL SECTION */
+/* TESTIMONIALS */
 .testimonials{
   display:flex;
   flex-wrap:wrap;
   gap:15px;
   justify-content:center;
-  margin-top:20px;
+  margin-top:25px;
 }
 
 .testimonial{
@@ -174,62 +169,51 @@ video{
   padding:18px;
   border-radius:14px;
   text-align:left;
-  font-size:14px;
   color:#ddd;
+  font-size:14px;
+  transition:.3s;
 }
+.testimonial:hover{transform:translateY(-5px);}
 
 .testimonial strong{
   display:block;
   margin-top:10px;
-  color:#fff;
   font-size:13px;
+  color:#fff;
 }
 
 /* CONTACT */
 .contact-box{
-  max-width:520px;
+  max-width:500px;
   margin:20px auto;
   padding:30px;
   border-radius:20px;
 }
 
-form{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-input, textarea{
+input,textarea{
+  width:100%;
   padding:14px;
+  margin-bottom:12px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
   background:#111118;
   color:#fff;
 }
 
-input:focus, textarea:focus{
-  outline:none;
-  box-shadow:0 0 0 2px #7B5CFF;
-}
-
 button{
+  width:100%;
   padding:14px;
   border:none;
   border-radius:30px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
-  cursor:pointer;
 }
 
-.success{
-  display:none;
-  margin-top:10px;
-  color:#7BFFB2;
-}
+.success{display:none;margin-top:10px;color:#7BFFB2;}
 
 /* MOBILE */
 @media(max-width:768px){
-  .hero h1{font-size:32px;}
+  .hero h1{font-size:30px;}
   .featured{transform:scale(1);}
 }
 </style>
@@ -249,88 +233,67 @@ button{
 </section>
 
 <!-- PRICING -->
-<section class="section">
+<section class="section fade">
   <h2>Website Packages</h2>
 
   <div class="cards">
-
-    <div class="card glass">
+    <div class="card glass fade">
       <h3>Starter</h3>
       <div class="price">$100</div>
       <p>Simple site to get online fast.</p>
     </div>
 
-    <div class="card glass featured">
+    <div class="card glass featured fade">
       <div class="badge">Most Popular</div>
       <h3>Business Growth</h3>
       <div class="price">$250</div>
       <p>Best option to attract customers and look professional.</p>
     </div>
 
-    <div class="card glass">
+    <div class="card glass fade">
       <h3>Premium</h3>
       <div class="price">$500</div>
       <p>High-end conversion design.</p>
     </div>
-
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="section">
+<!-- PROJECT -->
+<section class="section fade">
   <h2>Recent Project</h2>
 
-  <video autoplay muted loop playsinline>
-    <source src="demo.mp4" type="video/mp4">
-  </video>
+  <div class="project glass fade">
+    <video autoplay muted loop playsinline>
+      <source src="demo.mp4" type="video/mp4">
+    </video>
 
-  <div class="project-details">
-    <strong>Project:</strong> Landscaping Company Website<br><br>
-    Built a modern, mobile-first website designed to make the business look more professional and increase inbound calls. Focused on clear services, easy contact, and strong local presence.
+    <div class="project-info">
+      <span class="project-tag">Landscaping Business</span>
+      <h3>Modern Local Service Website</h3>
+      <p>
+        Designed to make the business look professional and increase inbound calls.
+        Focused on mobile users, clear service sections, and fast contact options.
+      </p>
+    </div>
   </div>
 
-  <!-- PROJECT TESTIMONIAL -->
   <div class="testimonials">
-    <div class="testimonial glass">
-      “Way better than what I had before. I’ve already had customers mention the website.”
+    <div class="testimonial glass fade">
+      “Way better than what I had before. Customers actually mention my website now.”
       <strong>– Mike R., Landscaping Owner</strong>
     </div>
   </div>
 </section>
 
-<!-- GENERAL TESTIMONIALS -->
-<section class="section">
-  <h2>What Clients Say</h2>
-
-  <div class="testimonials">
-
-    <div class="testimonial glass">
-      “Super clean design and easy process from start to finish.”
-      <strong>– James T.</strong>
-    </div>
-
-    <div class="testimonial glass">
-      “I needed something affordable but still professional, this was perfect.”
-      <strong>– Sarah L.</strong>
-    </div>
-
-    <div class="testimonial glass">
-      “My business finally looks legit online.”
-      <strong>– David M.</strong>
-    </div>
-
-  </div>
-</section>
-
 <!-- CONTACT -->
-<section class="section">
+<section class="section fade">
   <h2>Let’s Build Your Website</h2>
 
-  <div class="contact-box glass">
+  <div class="contact-box glass fade">
     <form id="form" action="YOUR_FORMSPREE_URL" method="POST">
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Tell me about your business..." required></textarea>
+      <textarea name="message" placeholder="Tell me about your business..." required></textarea>
       <button type="submit">Start My Website</button>
     </form>
 
@@ -338,7 +301,39 @@ button{
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section class="section fade">
+  <h2>What Clients Say</h2>
+
+  <div class="testimonials">
+    <div class="testimonial glass fade">
+      “Super smooth process and the site came out clean.”
+      <strong>– James T.</strong>
+    </div>
+
+    <div class="testimonial glass fade">
+      “Affordable but still looks high-end. Exactly what I needed.”
+      <strong>– Sarah L.</strong>
+    </div>
+
+    <div class="testimonial glass fade">
+      “My business finally looks legit online.”
+      <strong>– David M.</strong>
+    </div>
+  </div>
+</section>
+
 <script>
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:.1});
+
+document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
+
 const form=document.getElementById('form');
 const success=document.getElementById('success');
 
