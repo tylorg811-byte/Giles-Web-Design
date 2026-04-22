@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Giles Web Design</title>
 
-<!-- Luxury + modern pairing -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<!-- Premium serif upgrade -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -18,7 +18,7 @@ body{
   font-family:'Inter',sans-serif;
 }
 
-/* ================= NAV (PREMIUM UPGRADE) ================= */
+/* ================= NAV ================= */
 nav{
   position:fixed;
   top:0;
@@ -41,25 +41,24 @@ nav.scrolled{
   backdrop-filter: blur(18px);
 }
 
-/* LUXURY BRAND FONT */
+/* 🔥 FIXED LUXURY BRAND */
 .brand{
-  font-family:'Playfair Display', serif;
-  font-size:20px;
+  font-family:'Cormorant Garamond', serif;
+  font-size:24px;
   letter-spacing:0.5px;
+  line-height:1;
 }
 
-/* MODERN NAV LINKS (NOT PLAIN TEXT ANYMORE) */
+/* NAV LINKS */
 .nav-links a{
   color:#cfcfcf;
   text-decoration:none;
   margin-left:10px;
   font-size:13px;
-
   padding:8px 14px;
   border-radius:999px;
-
   background:rgba(255,255,255,0.04);
-  transition:0.25s ease;
+  transition:0.25s;
 }
 
 .nav-links a:hover{
@@ -122,11 +121,15 @@ nav.scrolled{
   bottom:-120px;right:-120px;
 }
 
-/* HERO CONTENT */
+/* HERO CONTENT SPACING FIX */
 .hero-content{
   position:relative;
   z-index:2;
   max-width:800px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
 }
 
 /* TAGLINE */
@@ -134,59 +137,42 @@ nav.scrolled{
   font-size:13px;
   letter-spacing:2px;
   color:#aaa;
-  margin-bottom:18px;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.2s;
 }
 
 /* LOGO */
 .logo{
   width:260px;
-  margin-bottom:25px;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.35s;
+  margin:10px 0;
 }
 
-/* TEXT */
+/* TITLE */
 .hero h1{
   font-size:44px;
-  line-height:1.2;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.5s;
+  line-height:1.15;
+  max-width:750px;
 }
 
 .hero p{
-  margin-top:15px;
   color:#aaa;
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.7s;
+  max-width:600px;
 }
 
-/* BUTTON FIX (NO MORE DEFAULT LINK BEHAVIOR) */
+/* BUTTONS ROW FIX */
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:10px;
+}
+
+/* BUTTON */
 .btn{
   display:inline-block;
-  margin-top:25px;
-  padding:14px 32px;
+  padding:14px 28px;
   border-radius:40px;
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
-
   font-weight:500;
-  cursor:pointer;
-  user-select:none;
-
-  opacity:0;
-  animation:fadeUp 1s ease forwards;
-  animation-delay:0.9s;
-}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0);}
 }
 
 /* ================= SECTIONS ================= */
@@ -195,19 +181,7 @@ nav.scrolled{
   text-align:center;
 }
 
-/* IMPORTANT FIX: footer is EXCLUDED from fade system */
-.fade{
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s ease;
-}
-
-.fade.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* ================= PRICING ================= */
+/* ================= PRICING FIX (SIDE BY SIDE) ================= */
 .cards{
   display:flex;
   gap:25px;
@@ -221,6 +195,11 @@ nav.scrolled{
   padding:30px;
   border-radius:20px;
   width:280px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
 }
 
 .price{
@@ -230,16 +209,16 @@ nav.scrolled{
   font-weight:600;
 }
 
-/* ================= CONTACT ================= */
+/* ================= CONTACT FORM ================= */
 form{
-  max-width:500px;
+  max-width:520px;
   margin:40px auto 0;
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:12px;
 }
 
-input, textarea{
+input, textarea, select{
   padding:12px;
   border:none;
   border-radius:10px;
@@ -247,16 +226,7 @@ input, textarea{
   color:#fff;
 }
 
-button{
-  padding:14px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
-  color:#fff;
-  cursor:pointer;
-}
-
-/* ================= FOOTER CTA (FIXED NOT TO TRIGGER ANIMATION) ================= */
+/* FOOTER */
 .mobile-cta{
   position:fixed;
   bottom:0;
@@ -265,10 +235,6 @@ button{
   text-align:center;
   padding:15px;
   z-index:999;
-
-  /* prevent scroll animation interference */
-  opacity:1 !important;
-  transform:none !important;
 }
 
 .mobile-cta a{
@@ -281,10 +247,8 @@ button{
 
 <body>
 
-<!-- NAV -->
 <nav id="nav">
   <div class="brand">Giles Web Design</div>
-
   <div class="nav-links">
     <a href="#pricing">Pricing</a>
     <a href="#contact">Contact</a>
@@ -307,15 +271,16 @@ button{
 
     <p>Designed to attract customers, build trust, and grow your business.</p>
 
-    <!-- FIXED BUTTON -->
-    <a class="btn" href="sms:2397884380">Message Me</a>
+    <div class="hero-buttons">
+      <a class="btn" href="sms:2397884380">Message Me</a>
+    </div>
 
   </div>
 
 </section>
 
 <!-- PRICING -->
-<section class="section fade" id="pricing">
+<section class="section" id="pricing">
   <h2>Website Packages</h2>
 
   <div class="cards">
@@ -339,42 +304,31 @@ button{
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="section fade" id="contact">
+<!-- CONTACT (UPDATED FIELDS) -->
+<section class="section" id="contact">
   <h2>Contact Me</h2>
 
   <form action="https://formspree.io/f/yourFormID" method="POST">
+
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
+
+    <input type="text" name="business_type" placeholder="Business Type">
+    <input type="text" name="budget_range" placeholder="Budget Range">
+
     <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
+
+    <button type="submit" class="btn">Send Message</button>
   </form>
 </section>
 
-<!-- FOOTER CTA -->
 <div class="mobile-cta">
   <a href="sms:2397884380">Message Me Now</a>
 </div>
 
 <script>
-const fades=document.querySelectorAll('.fade');
-
-function checkFade(){
-  fades.forEach(el=>{
-    const top=el.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
-      el.classList.add('show');
-    }
-  });
-}
-
-window.addEventListener("scroll",checkFade);
-window.addEventListener("load",()=>{
-  checkFade();
-});
-
-/* NAV SCROLL EFFECT */
 const nav=document.getElementById("nav");
+
 window.addEventListener("scroll",()=>{
   nav.classList.toggle("scrolled", window.scrollY>10);
 });
