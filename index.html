@@ -14,7 +14,6 @@ body{
   background:#0B0B0F;
   color:#fff;
   font-family:'Inter',sans-serif;
-  overflow-x:hidden;
 }
 
 /* HEADER */
@@ -32,12 +31,7 @@ body{
 }
 
 .header img{width:110px;}
-
-.header a{
-  color:#fff;
-  text-decoration:none;
-  font-size:14px;
-}
+.header a{color:#fff;text-decoration:none;font-size:14px;}
 
 /* HERO */
 .hero{
@@ -48,7 +42,6 @@ body{
   justify-content:center;
   text-align:center;
   position:relative;
-  overflow:hidden;
 }
 
 .hero-bg{
@@ -57,8 +50,8 @@ body{
   height:200%;
   background:
     radial-gradient(circle at 20% 30%, #7B5CFF, transparent 40%),
-    radial-gradient(circle at 80% 70%, #00C2FF, transparent 40%);
-  opacity:.25;
+    radial-gradient(circle at 80% 70%, #7B5CFF, transparent 40%);
+  opacity:.2;
 }
 
 .hero-content{
@@ -73,12 +66,7 @@ body{
 }
 
 .logo{width:170px;margin:10px auto;}
-
-.tagline{
-  font-size:11px;
-  letter-spacing:3px;
-  color:#aaa;
-}
+.tagline{font-size:11px;letter-spacing:3px;color:#aaa;}
 
 .hero h1{
   font-family:'Playfair Display';
@@ -92,9 +80,9 @@ body{
   margin-top:20px;
   padding:14px 30px;
   border-radius:30px;
-  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
-  text-decoration:none;
+  background:linear-gradient(45deg,#7B5CFF,#9F7BFF);
   color:#fff;
+  text-decoration:none;
   position:relative;
   overflow:hidden;
 }
@@ -146,9 +134,17 @@ body{
   padding:25px;
   border-radius:18px;
   position:relative;
+  text-align:center;
 }
 
-/* FEATURED FIX (REAL ONE) */
+/* ICON */
+.icon{
+  font-size:26px;
+  margin-bottom:10px;
+  color:#7B5CFF;
+}
+
+/* FEATURED PURPLE GLOW */
 .featured{
   transform:scale(1.07);
 }
@@ -158,7 +154,7 @@ body{
   position:absolute;
   inset:-2px;
   border-radius:20px;
-  background:linear-gradient(120deg,#7B5CFF,#00C2FF,#7B5CFF);
+  background:linear-gradient(120deg,#7B5CFF,#9F7BFF,#7B5CFF);
   background-size:300% 300%;
   animation:glow 5s linear infinite;
   z-index:-1;
@@ -184,7 +180,7 @@ body{
 .price{
   font-size:34px;
   margin:10px 0;
-  color:#7B5CFF;
+  color:#9F7BFF;
 }
 
 /* PROJECT */
@@ -196,16 +192,8 @@ body{
 }
 
 .project video{width:100%;}
-
-.project-info{
-  padding:20px;
-  text-align:left;
-}
-
-.project-tag{
-  font-size:12px;
-  color:#7B5CFF;
-}
+.project-info{padding:20px;text-align:left;}
+.project-tag{font-size:12px;color:#9F7BFF;}
 
 /* TESTIMONIALS */
 .testimonials{
@@ -221,6 +209,11 @@ body{
   padding:18px;
   border-radius:14px;
   text-align:left;
+  transition:.3s;
+}
+
+.testimonial:hover{
+  box-shadow:0 0 20px rgba(123,92,255,0.3);
 }
 
 .testimonial strong{
@@ -252,7 +245,7 @@ button{
   padding:14px;
   border:none;
   border-radius:30px;
-  background:linear-gradient(45deg,#7B5CFF,#00C2FF);
+  background:linear-gradient(45deg,#7B5CFF,#9F7BFF);
   color:#fff;
 }
 </style>
@@ -284,6 +277,7 @@ button{
 
 <div class="cards">
   <div class="card glass">
+    <div class="icon">⚡</div>
     <h3>Starter</h3>
     <div class="price">$100</div>
     <p>Simple site to get online fast.</p>
@@ -291,12 +285,14 @@ button{
 
   <div class="card glass featured">
     <div class="badge">Most Popular</div>
+    <div class="icon">🚀</div>
     <h3>Business Growth</h3>
     <div class="price">$250</div>
     <p>Best option to attract customers.</p>
   </div>
 
   <div class="card glass">
+    <div class="icon">💎</div>
     <h3>Premium</h3>
     <div class="price">$500</div>
     <p>High-end conversion design.</p>
@@ -363,10 +359,7 @@ const observer=new IntersectionObserver(entries=>{
     }
   });
 });
-
-document.querySelectorAll('.fade').forEach(el=>{
-  observer.observe(el);
-});
+document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 </script>
 
 </body>
