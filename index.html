@@ -11,6 +11,18 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hidden;}
 
+/* CURSOR GLOW */
+.cursor-glow{
+  position:fixed;
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle, rgba(123,92,255,0.2), transparent 60%);
+  transform:translate(-50%,-50%);
+  z-index:0;
+}
+
 /* HERO */
 .hero{
   min-height:90vh;
@@ -37,7 +49,13 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   position:relative;
   z-index:2;
   max-width:650px;
-  transition:transform .2s ease-out;
+  opacity:0;
+  transform:translateY(40px);
+  animation:heroFade 1s ease forwards;
+}
+
+@keyframes heroFade{
+  to{opacity:1;transform:translateY(0);}
 }
 
 .tagline{font-size:11px;letter-spacing:3px;color:#aaa;margin-bottom:6px;}
@@ -59,9 +77,11 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   background:linear-gradient(45deg,#7B5CFF,#00C2FF);
   color:#fff;
   text-decoration:none;
+  transition:.3s;
 }
+.btn:hover{transform:scale(1.05);}
 
-/* SECTION */
+/* SECTIONS */
 .section{padding:60px 20px;text-align:center;}
 
 /* FADE */
@@ -89,7 +109,8 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   padding:26px;
   border-radius:18px;
   width:260px;
-  transition:.3s;
+  transition:.2s;
+  transform-style:preserve-3d;
 }
 .card:hover{transform:translateY(-6px);}
 
@@ -112,17 +133,6 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
 }
 
 .price{font-size:34px;margin:10px 0;color:#7B5CFF;}
-
-/* ABOUT */
-.about{
-  max-width:700px;
-  margin:0 auto;
-  padding:25px;
-  border-radius:20px;
-  text-align:left;
-  line-height:1.6;
-  color:#ccc;
-}
 
 /* PROJECT */
 .project{
@@ -163,12 +173,6 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
   color:#ddd;
 }
 
-.testimonial strong{
-  display:block;
-  margin-top:10px;
-  font-size:13px;
-}
-
 /* CONTACT */
 .contact-box{
   max-width:500px;
@@ -202,6 +206,8 @@ button{
 
 <body>
 
+<div class="cursor-glow" id="cursorGlow"></div>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg" id="heroBg"></div>
@@ -219,37 +225,32 @@ button{
 <section class="section fade">
   <h2>Website Packages</h2>
   <div class="cards">
-
-    <div class="card glass">
+    <div class="card glass tilt">
       <h3>Starter</h3>
       <div class="price">$100</div>
       <p>Simple site to get online fast.</p>
     </div>
 
-    <div class="card glass featured">
+    <div class="card glass featured tilt">
       <div class="badge">Most Popular</div>
       <h3>Business Growth</h3>
       <div class="price">$250</div>
       <p>Best option to attract customers and look professional.</p>
     </div>
 
-    <div class="card glass">
+    <div class="card glass tilt">
       <h3>Premium</h3>
       <div class="price">$500</div>
       <p>High-end conversion design.</p>
     </div>
-
   </div>
 </section>
 
 <!-- ABOUT -->
 <section class="section fade">
   <h2>About Me</h2>
-
-  <div class="about glass">
-    I’ve been designing websites since 2015, helping businesses look more professional and bring in more customers online.  
-    <br><br>
-    My focus is simple — create clean, modern websites that actually convert, without overcharging.
+  <div class="glass" style="max-width:700px;margin:auto;padding:25px;text-align:left;">
+    I’ve been designing websites since 2015, helping businesses look more professional and get more customers.
   </div>
 </section>
 
@@ -265,10 +266,14 @@ button{
     <div class="project-info">
       <span class="project-tag">Landscaping Business</span>
       <h3>Modern Local Service Website</h3>
-      <p>
-        Built to increase calls and make the business look professional online.  
-        Focused on mobile users, clear services, and easy contact.
-      </p>
+      <p>Built to increase calls and make the business look professional online.</p>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    <div class="testimonial glass">
+      “Customers actually bring up my site now.”
+      <strong>– Mike R.</strong>
     </div>
   </div>
 </section>
@@ -285,7 +290,7 @@ button{
       <button type="submit">Start My Website</button>
     </form>
 
-    <div class="success" id="success">Message sent! I’ll get back to you.</div>
+    <div class="success" id="success">Message sent!</div>
   </div>
 </section>
 
@@ -294,40 +299,51 @@ button{
   <h2>What Clients Say</h2>
 
   <div class="testimonials">
-    <div class="testimonial glass">
-      “Super smooth process and the site came out clean.”
-      <strong>– James T.</strong>
-    </div>
-
-    <div class="testimonial glass">
-      “Affordable but still looks high-end. Exactly what I needed.”
-      <strong>– Sarah L.</strong>
-    </div>
-
-    <div class="testimonial glass">
-      “My business finally looks legit online.”
-      <strong>– David M.</strong>
-    </div>
+    <div class="testimonial glass">“Super smooth process.”<strong>– James T.</strong></div>
+    <div class="testimonial glass">“Looks high-end.”<strong>– Sarah L.</strong></div>
+    <div class="testimonial glass">“My business looks legit now.”<strong>– David M.</strong></div>
   </div>
 </section>
 
 <script>
-/* SCROLL ANIMATION */
+/* SCROLL FADE */
 const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add('show');
   });
-},{threshold:.1});
-
+});
 document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 
-/* HERO PARALLAX */
+/* PARALLAX */
 window.addEventListener('scroll',()=>{
-  let scrollY=window.scrollY;
-  document.getElementById('heroBg').style.transform=`translateY(${scrollY * 0.2}px)`;
-  document.getElementById('heroContent').style.transform=`translateY(${scrollY * 0.1}px)`;
+  let y=window.scrollY;
+  heroBg.style.transform=`translateY(${y*0.2}px)`;
+  heroContent.style.transform=`translateY(${y*0.1}px)`;
+});
+
+/* CURSOR GLOW */
+const glow=document.getElementById('cursorGlow');
+document.addEventListener('mousemove',e=>{
+  glow.style.left=e.clientX+'px';
+  glow.style.top=e.clientY+'px';
+});
+
+/* CARD TILT */
+document.querySelectorAll('.tilt').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    let rect=card.getBoundingClientRect();
+    let x=e.clientX-rect.left;
+    let y=e.clientY-rect.top;
+
+    let rotateX=-(y/rect.height - .5)*10;
+    let rotateY=(x/rect.width - .5)*10;
+
+    card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='rotateX(0) rotateY(0)';
+  });
 });
 
 /* FORM */
