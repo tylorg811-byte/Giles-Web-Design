@@ -24,15 +24,35 @@ body{background:#0B0B0F;color:#fff;font-family:'Inter',sans-serif;overflow-x:hid
 /* HEADER */
 .header{
 position:fixed;
-top:0;width:100%;
+top:0;
+width:100%;
 display:flex;
-justify-content:flex-start;
+align-items:center;
+justify-content:space-between;
 padding:12px 20px;
 background:rgba(10,10,15,0.8);
 backdrop-filter:blur(10px);
 z-index:100;
 }
 .header img{width:110px;}
+
+.portal-btn{
+padding:9px 20px;
+border-radius:30px;
+background:linear-gradient(45deg,#7B5CFF,#9F7BFF);
+color:#fff;
+text-decoration:none;
+font-size:13px;
+font-weight:500;
+letter-spacing:.3px;
+box-shadow:0 0 18px rgba(123,92,255,.35);
+transition:.25s;
+}
+
+.portal-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 0 26px rgba(123,92,255,.55);
+}
 
 /* HERO */
 .hero{
@@ -87,7 +107,6 @@ margin-bottom:10px;
 
 .hero p{color:#aaa;margin-bottom:25px;}
 
-/* 🔧 FIXED BUTTON SPACING */
 .btn{
 display:inline-block;
 margin-top:18px;
@@ -105,7 +124,6 @@ text-align:center;
 position:relative;
 }
 
-/* 💜 SEPARATOR */
 .section::before{
 content:"";
 position:absolute;
@@ -135,15 +153,21 @@ border:1px solid rgba(255,255,255,0.08);
 .toggle{display:flex;justify-content:center;margin-bottom:20px;}
 .toggle-inner{background:#111;border-radius:30px;padding:4px;display:flex;}
 .toggle button{
-border:none;padding:8px 16px;border-radius:20px;
-background:transparent;color:#aaa;
+border:none;
+padding:8px 16px;
+border-radius:20px;
+background:transparent;
+color:#aaa;
+cursor:pointer;
 }
 .toggle .active{background:#7B5CFF;color:#fff;}
 
 /* CARDS */
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
 .card{
-width:260px;padding:28px;border-radius:18px;
+width:260px;
+padding:28px;
+border-radius:18px;
 transition:.25s;
 }
 .card:hover{transform:translateY(-8px);}
@@ -164,11 +188,16 @@ text-shadow:
 /* FEATURES */
 .features{display:none;text-align:left;margin-top:10px;}
 .features li{
-list-style:none;margin-bottom:10px;
-padding-left:26px;position:relative;
+list-style:none;
+margin-bottom:10px;
+padding-left:26px;
+position:relative;
 }
 .features li::before{
-content:"✔";position:absolute;left:0;color:#7B5CFF;
+content:"✔";
+position:absolute;
+left:0;
+color:#7B5CFF;
 }
 
 /* FEATURED BORDER */
@@ -188,13 +217,24 @@ animation:glow 4s linear infinite;
 z-index:-1;
 }
 
+.badge{
+display:inline-block;
+margin-bottom:10px;
+padding:6px 12px;
+border-radius:20px;
+background:#7B5CFF;
+color:#fff;
+font-size:12px;
+font-weight:600;
+}
+
 @keyframes glow{
 0%{background-position:0%}
 50%{background-position:100%}
 100%{background-position:0%}
 }
 
-/* 💬 TRUST LINE UNDER PRICING */
+/* TRUST LINE UNDER PRICING */
 .trust{
 margin-top:25px;
 color:#aaa;
@@ -211,8 +251,10 @@ color:#bbb;
 
 /* PROJECT */
 .project{
-max-width:900px;margin:30px auto;
-border-radius:18px;overflow:hidden;
+max-width:900px;
+margin:30px auto;
+border-radius:18px;
+overflow:hidden;
 }
 .project video{width:100%;}
 .project-info{padding:20px;text-align:left;}
@@ -227,7 +269,10 @@ text-align:center;
 
 /* TESTIMONIALS */
 .testimonials{
-display:flex;flex-wrap:wrap;justify-content:center;gap:18px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:18px;
 }
 .testimonial{
 width:300px;
@@ -243,13 +288,47 @@ margin:auto;
 padding:35px;
 border-radius:18px;
 }
+
 input,textarea{
-width:100%;padding:14px;margin-bottom:12px;
-border:none;border-radius:10px;background:#111;color:#fff;
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:10px;
+background:#111;
+color:#fff;
 }
+
 button{
-width:100%;padding:14px;border:none;border-radius:30px;
-background:#7B5CFF;color:#fff;
+width:100%;
+padding:14px;
+border:none;
+border-radius:30px;
+background:#7B5CFF;
+color:#fff;
+}
+
+@media(max-width:600px){
+.header{
+padding:10px 16px;
+}
+
+.header img{
+width:95px;
+}
+
+.portal-btn{
+padding:8px 14px;
+font-size:12px;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.featured{
+transform:scale(1);
+}
 }
 </style>
 </head>
@@ -257,7 +336,11 @@ background:#7B5CFF;color:#fff;
 <body>
 
 <div class="header">
-<img src="logo.png">
+  <img src="logo.png" alt="Giles Web Design Logo">
+
+  <a href="https://giles-client-portal.netlify.app" class="portal-btn">
+    Client Portal
+  </a>
 </div>
 
 <section class="hero">
@@ -265,7 +348,7 @@ background:#7B5CFF;color:#fff;
 
 <div class="hero-content">
 <div class="tagline">AFFORDABLE — YOUR WAY</div>
-<img src="logo.png" class="logo">
+<img src="logo.png" class="logo" alt="Giles Web Design Logo">
 
 <h1>Look Professional.<br>Get More Customers.</h1>
 <p>Affordable websites designed to turn visitors into paying customers.</p>
@@ -291,7 +374,9 @@ background:#7B5CFF;color:#fff;
 <div class="price">$100</div>
 <p class="simple">Simple site to get online fast.</p>
 <ul class="features">
-<li>1 Page</li><li>Mobile Ready</li><li>Basic SEO</li>
+<li>1 Page</li>
+<li>Mobile Ready</li>
+<li>Basic SEO</li>
 </ul>
 </div>
 
@@ -301,7 +386,9 @@ background:#7B5CFF;color:#fff;
 <div class="price">$250</div>
 <p class="simple">Best option to attract customers.</p>
 <ul class="features">
-<li>3 Pages</li><li>SEO</li><li>Google Maps</li>
+<li>3 Pages</li>
+<li>SEO</li>
+<li>Google Maps</li>
 </ul>
 </div>
 
@@ -310,7 +397,9 @@ background:#7B5CFF;color:#fff;
 <div class="price">$500</div>
 <p class="simple">High-end business presence.</p>
 <ul class="features">
-<li>5 Pages</li><li>Booking</li><li>Priority Support</li>
+<li>5 Pages</li>
+<li>Booking</li>
+<li>Priority Support</li>
 </ul>
 </div>
 
@@ -366,6 +455,7 @@ You’re not getting a cookie-cutter template — you’re getting a site built 
   <button type="submit">Start My Website</button>
 
 </form>
+</div>
 </section>
 
 <section class="section fade">
